@@ -10,7 +10,7 @@
     <title>python学习 | Hexo</title>
     <meta name="author" content="John Doe" />
     <meta name="keywords" content="" />
-    <meta name="description" content="" />
+    <meta name="description" content="Python:一， pip基础使用：查看已安装的包：pip list安装包：pip install (包名）安装指定版本的包：pip install (包名）&amp;#x3D;&amp;#x3D;(版本号)卸载包：pip uninstall (包名)升级包：pip install –upgrade (包名)帮助：  pip help二， 运行python代码：退出：exit()函数：print () 注意函数后面有空格Unicode ()，是单独的，不是byte类型除法运算：&amp;#x2F;，&amp;#x2F;&amp;#x2" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -149,13 +149,32 @@
 </a>
 
             
+<div class="article-tag-list">
+    <i class="icon-tag vm"></i>
+    <a class="article-tag-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+</div>
+
 
         </div>
     </header>
     
     <section class="article-body markdown-body">
         
-        
+        <p>Python:<br>一， pip基础使用：<br>查看已安装的包：pip list<br>安装包：pip install (包名）<br>安装指定版本的包：pip install (包名）&#x3D;&#x3D;(版本号)<br>卸载包：pip uninstall (包名)<br>升级包：pip install –upgrade (包名)<br>帮助：  pip help<br>二， 运行python代码：<br>退出：exit()</p>
+<p>函数：<br>print () 注意函数后面有空格<br>Unicode ()，是单独的，不是byte类型</p>
+<p>除法运算：<br>&#x2F;，&#x2F;&#x2F; 对于&#x2F;&#x2F;这种除法叫做floor除法，会对除法的结果进行一个floor操作<br>八进制字面量表示：<br>八进制数必须写成0o777，原来的形式0777不能用；二进制必须写成0b111。<br>不等运算符：<br>!&#x3D;</p>
+<p>标识符：<br>第一个字符必须是字母表中的字母或下划线_。<br>标识符的其他部分由字母、数字和下划线组成。<br>标识符对大小写敏感。</p>
+<p>python保留字  即关键字</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>keyword.kwlist<br>[‘False’, ‘None’, ‘True’, ‘and’, ‘as’, ‘assert’, ‘async’, ‘await’, ‘break’, ‘class’, ‘continue’, ‘def’, ‘del’, ‘elif’, ‘else’, ‘except’, ‘finally’, ‘for’, ‘from’, ‘global’, ‘if’, ‘import’, ‘in’, ‘is’, ‘lambda’, ‘nonlocal’, ‘not’, ‘or’, ‘pass’, ‘raise’, ‘return’, ‘try’, ‘while’, ‘with’, ‘yield’]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>数字(number)类型：<br>四种类型：整数、布尔型、浮点型和复数。<br>int(整数)，如1，只有一种整数类型int,表示为长整型，<br>boor(布尔)，如true<br>float(浮点型)，如1.23、3E-2<br>complex(复数)，如1+2j、1.1+2.2j</p>
+<p>字符串(string):<br>pt中单引号和双引号使用相同<br>使用三引号(‘’’huo’’’)可以指定一个多行字符串<br>转义符’&#39;  反斜杠可以用来转义，使用r可以让反斜杠不发生转义。如r‘’this is a line with \n‘’会显示，并不是换行。<br>按字面意义级联字符串，如”this””is””string”会被自动转换为this is string。<br>字符串可以用+运算符连接在一起，用*运算符重复。<br>pt中的字符串有两种索引方式，从左往右以0开始，从右往左以-1开始。<br>pt中的字符串不能改变。<br>pt没有单独的字符类型，一个字符就是长度为1的字符串。<br>字符串的截取的语法格式：变量[头下标:尾下标]</p>
+
         
     </section>
 </article>
@@ -176,7 +195,7 @@
         distractionFreeMode: true,
         title: "python学习",
         body: "http://example.com/2023/06/08/python%E5%AD%A6%E4%B9%A0/",
-        labels: []
+        labels: ["笔记"]
     }).render('comments');
     </script>
 </div>
@@ -188,7 +207,7 @@
 
         
             
-            <a id="pagenext" href="/2023/06/04/test/" class="article-next" title="test"><i class="icon-arrow-right"></i></a>
+            <a id="pagenext" href="/2023/06/04/hello-world/" class="article-next" title="Hello World"><i class="icon-arrow-right"></i></a>
             
             
             <a id="pageprev" href="/2023/06/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/" class="article-prev" title="网络安全学习"><i class="icon-arrow-left"></i></a>
