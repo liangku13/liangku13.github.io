@@ -136,6 +136,37 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2023/06/29/ssrf%E8%AF%A6%E8%A7%A3/">ssrf详解</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-06-29T13:30:11.000Z" itemprop="datePublished">2023-06-29</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>什么是ssrf<br>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。<br>我理解的是相当于内网穿透，你获取到其中一个内网主机，可以用这个内网主机作为服务器向其他的内网机器发起攻击。SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。</p>
+<p>ssrf的利用<br>分享，通过URL地址分享网页内容，通过URL获取目标页标签等内容<br>转码服务，适应硬件设备的大小；<br>图片的加载与下载<br>图片，文章的收藏；<br>产生SSRF漏洞的函数<br>file_get_contents<br>fsockopen()<br>ssrf漏洞利用<br>1.可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;<br>2.攻击运行在内网或本地的应用程序（比如溢出）;<br>3.对内网web应用进行指纹识别，通过访问默认文件实现;<br>4.攻击内外网的web应用，主要是使用get参数就可以实现的攻击（比如struts2，sqli等）;<br>5.利用file协议读取本地文件等。.<br>6.各个协议调用探针：http,file,dict,ftp,gopher等<br>本题目就是运用第六种，gopher协议。</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2023/06/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/">网络安全学习</a>
         </h1>
         
