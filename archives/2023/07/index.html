@@ -7,10 +7,10 @@
 
     
 
-    <title>ssrf详解 | Hexo</title>
+    <title>Archives: 2023/7 | Hexo</title>
     <meta name="author" content="John Doe" />
     <meta name="keywords" content="" />
-    <meta name="description" content="什么是ssrfSSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。我理解的是相当于内网穿透，你获取到其中一个内网主机，可以用这个内网主机作为服务器向其他的内网机器发起攻击。SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。ssrf的利用分享，通过URL地址分享网页内容，通过URL获取目标页标签等内容转码服务，适应硬件设备的大小；图片的加载与下载图片，文章的收" />
+    <meta name="description" content="" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -68,7 +68,7 @@
                 <span class="nav-text">标签</span>
             </a>
         
-            <a class="nav-item" href="/archives">
+            <a class="nav-item active" href="/archives">
                 <span class="nav-text">归档</span>
             </a>
         
@@ -88,8 +88,6 @@
     <div id="aside-inner" class="aside-inner">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://example.com"></form>
 
-        
-        
         
         
 
@@ -132,69 +130,50 @@
 
         <div id="content" class="content">
             <div id="wrapper" class="wrapper" style="max-width: 800px">
-                <article class="article" itemscope itemprop="blogPost">
+                
+
+
     
-    <header class="article-header">
+    
+    
+    
+    
+    <section class="archives-wrap">
+    <div class="archive-year-wrap">
+    <a href="/archives/2023/07" class="page-hd">
+        2023/07
+    </a>
+    </div>
+    <ol class="archives">
+    
+
+    <li class="archive-section-item">
         
-        <h1 itemprop="name">
-            ssrf详解
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/2023/06/29/ssrf%E8%AF%A6%E8%A7%A3/index.html">
+<article class="archive-article archive-type-post">
+    <div class="archive-article-inner">
+        <header class="archive-article-header">
+            <a class="archive-article-link" href="/2023/07/01/gopher%E5%8D%8F%E8%AE%AE/">gopher协议</a>
+            <span class="archive-article-date">
+                (<a class="article-date" href="/archives/2023/07">
     
-    <i class="icon-calendar vm"></i>
-    
-    <time class="vm" datetime="2023-06-29T13:30:11.000Z" itemprop="datePublished">2023-06-29</time>
+    <time class="vm" datetime="2023-07-01T12:52:25.000Z" itemprop="datePublished">7/1</time>
 </a>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>什么是ssrf<br>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。<br>我理解的是相当于内网穿透，你获取到其中一个内网主机，可以用这个内网主机作为服务器向其他的内网机器发起攻击。SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。</p>
-<p>ssrf的利用<br>分享，通过URL地址分享网页内容，通过URL获取目标页标签等内容<br>转码服务，适应硬件设备的大小；<br>图片的加载与下载<br>图片，文章的收藏；<br>产生SSRF漏洞的函数<br>file_get_contents<br>fsockopen()<br>ssrf漏洞利用<br>1.可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;<br>2.攻击运行在内网或本地的应用程序（比如溢出）;<br>3.对内网web应用进行指纹识别，通过访问默认文件实现;<br>4.攻击内外网的web应用，主要是使用get参数就可以实现的攻击（比如struts2，sqli等）;<br>5.利用file协议读取本地文件等。.<br>6.各个协议调用探针：http,file,dict,ftp,gopher等<br>本题目就是运用第六种，gopher协议。</p>
-
-        
-    </section>
+)
+            </span>
+        </header>
+    </div>
 </article>
+    </li>
 
 
+</ol></section>
 
-<div class="comments">
-    <div id="comments"></div>
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-    new Gitalk({
-        clientID: "7fbe80427f54741e289f",
-        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
-        repo: "sanonz.github.io",
-        owner: "sanonz",
-        admin: ["sanonz"],
-        id: "762dc41fc1ae810f06db305861c3825b",
-        distractionFreeMode: true,
-        title: "ssrf详解",
-        body: "http://example.com/2023/06/29/ssrf%E8%AF%A6%E8%A7%A3/",
-        labels: []
-    }).render('comments');
-    </script>
-</div>
 
 
 
             </div>
         </div>
 
-        
-            
-            <a id="pagenext" href="/2023/06/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/" class="article-next" title="网络安全学习"><i class="icon-arrow-right"></i></a>
-            
-            
-            <a id="pageprev" href="/2023/07/01/gopher%E5%8D%8F%E8%AE%AE/" class="article-prev" title="gopher协议"><i class="icon-arrow-left"></i></a>
-            
         
 
         <footer class="footer">
@@ -268,33 +247,6 @@
         });
     });
     </script>
-    
-        
-<script src="/js/scrollspy.min.js"></script>
-
-        <script type="text/javascript">
-        $(document.body).scrollspy({target: '#aside-inner'});
-
-        $(window).on('resize', function() {
-            var hw = $('#header').width();
-            var ww = $('#wrapper').width();
-            var space = ($(this).width() - hw - ww) / 2 / 2;
-
-            var pageprev = $('#pageprev');
-            var pagenext = $('#pagenext');
-            var avg = (pageprev.width() + pagenext.width()) / 2
-
-            if(space > avg) {
-                var len = space - avg / 2;
-                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
-                pageprev.css($.extend({left: hw + len}, styles));
-                pagenext.css($.extend({right: len}, styles));
-            } else {
-                pageprev.removeAttr('style');
-                pagenext.removeAttr('style');
-            }
-        }).trigger('resize');
-        </script>
     
 
 </body>

