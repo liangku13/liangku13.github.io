@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>渗透测试-网站信息收集 | Hexo</title>
+    <meta name="author" content="John Doe" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="网站指纹识别网站的最基本组成：服务器（操作系统）、中间件（web容器）、脚本语言数据库为什么要了解这些？举个例子：发现了一个文件读取漏洞，我们需要读&amp;#x2F;etc&amp;#x2F;passwd，如果是Windows系统根本不会存这个文件1. 操作系统- ping判断：Windows的TTL值一般为128，Linux则为64.TTL大于100的一般为Windows，几十的一般为Linux。- nmap -O参数- Windows大小写不敏感，Linux则区分大小写2. 网站服务\容器类型- F12查" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/logo.jpg">
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]><style type="text/css">.nav-inner {top:0;}.author-meta {position:static;top:0;}.search-form {height:36px;}</style><script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/front-end">
+                <span class="nav-text">前端</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/back-end">
+                <span class="nav-text">后端</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+            <a class="nav-item" href="/atom.xml">
+                <span class="nav-text">订阅</span>
+            </a>
+        
+            <a class="nav-item" href="/about">
+                <span class="nav-text">关于</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E6%8C%87%E7%BA%B9%E8%AF%86%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">网站指纹识别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E7%9A%84%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89%E3%80%81%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%88web%E5%AE%B9%E5%99%A8%EF%BC%89%E3%80%81%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BA%86%E8%A7%A3%E8%BF%99%E4%BA%9B%EF%BC%9F%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%8F%91%E7%8E%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E6%BC%8F%E6%B4%9E%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E8%AF%BB-x2F-etc-x2F-passwd%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AFWindows%E7%B3%BB%E7%BB%9F%E6%A0%B9%E6%9C%AC%E4%B8%8D%E4%BC%9A%E5%AD%98%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B61-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-ping%E5%88%A4%E6%96%AD%EF%BC%9AWindows%E7%9A%84TTL%E5%80%BC%E4%B8%80%E8%88%AC%E4%B8%BA128%EF%BC%8CLinux%E5%88%99%E4%B8%BA64-TTL%E5%A4%A7%E4%BA%8E100%E7%9A%84%E4%B8%80%E8%88%AC%E4%B8%BAWindows%EF%BC%8C%E5%87%A0%E5%8D%81%E7%9A%84%E4%B8%80%E8%88%AC%E4%B8%BALinux%E3%80%82-nmap-O%E5%8F%82%E6%95%B0-Windows%E5%A4%A7%E5%B0%8F%E5%86%99%E4%B8%8D%E6%95%8F%E6%84%9F%EF%BC%8CLinux%E5%88%99%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%992-%E7%BD%91%E7%AB%99%E6%9C%8D%E5%8A%A1-%E5%AE%B9%E5%99%A8%E7%B1%BB%E5%9E%8B-F12%E6%9F%A5%E7%9C%8B%E5%93%8D%E5%BA%94%E5%A4%B4server%E5%AD%97%E6%AE%B5-whatweb-https-www-whatweb-net-wappalyzer%E6%8F%92%E4%BB%B63-%E8%84%9A%E6%9C%AC%E7%B1%BB%E5%9E%8Bphp%EF%BC%8Cjsp%EF%BC%8Casp-aspx%EF%BC%8Cpython4-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B1%BB%E5%9E%8Bmysql%EF%BC%8Csqlserver%EF%BC%8Caccess%EF%BC%8Coracle5-CMS%E8%AF%86%E5%88%AB%E5%B8%B8%E8%A7%81CMS%EF%BC%9Adedecms-%E7%BB%87%E6%A2%A6-%EF%BC%8Cdiscuz%EF%BC%8Cphpcms%E7%AD%89%E3%80%82-%E5%9C%A8%E7%BA%BF%E8%AF%86%E5%88%AB%E5%B7%A5%E5%85%B7http-whatweb-bugscaner-com-look-onlinetoolshttps-github-com-iceyhexman-onlinetoolshttps-pentest-gbpcisa-org-%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6%E5%8F%8A%E7%9B%AE%E5%BD%95%E6%8E%A2%E6%B5%8B1-%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6%E3%80%81%E7%9B%AE%E5%BD%95githubgitsvn-DS-Store-hg-bzrcvsWEB-INF%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E3%80%812-GitHub%E6%B3%84%E9%9C%B2%E5%BC%80%E5%8F%91%E4%BA%BA%E5%91%98%E5%B0%86%E4%BB%A3%E7%A0%81%E4%B8%8A%E4%BC%A0%E5%88%B0%E7%BD%91%E7%AB%99%EF%BC%8C%E5%9C%A8%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%B2%A1%E6%9C%89%E5%88%A0%E9%99%A4%E9%87%8D%E8%A6%81%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BF%A1%E6%81%AF%E3%80%82%E5%A6%82%E9%82%AE%E7%AE%B1%E4%BF%A1%E6%81%AF%EF%BC%8CSVN%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%86%85%E9%83%A8%E8%B4%A6%E5%8F%B7%E5%92%8C%E5%AF%86%E7%A0%81%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%E7%AD%89%E3%80%82%E5%B0%A4%E5%85%B6%E6%98%AF%E9%82%AE%E7%AE%B1%E4%BF%A1%E6%81%AF%E5%92%8C%E5%86%85%E9%83%A8%E8%B4%A6%E5%8F%B7%E5%92%8C%E5%AF%86%E7%A0%81%E3%80%82%E8%BF%99%E7%B1%BB%E4%BF%A1%E6%81%AF%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87github%E4%B8%8A%E6%90%9C%E7%B4%A2%E5%85%AC%E5%8F%B8%E7%9A%84%E4%B8%80%E4%BA%9B%E7%89%B9%E5%AE%9A%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E6%9C%89%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B0%86%E8%BF%99%E4%BA%9B%E4%BF%A1%E6%81%AF%E4%B8%8A%E4%BC%A0%E5%88%B0%E4%BA%86github%E4%B8%8A%E3%80%823-git%E6%B3%84%E9%9C%B2%E2%80%9C-git%E2%80%9Dintitle-%E2%80%9Dindex-of%E2%80%9Dhttps-github-com-lijiejie-GitHack4-%E7%BD%91%E7%AB%99%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E7%BD%91%E7%AB%99%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2%E6%8C%87%E5%B0%86%E7%AE%A1%E7%90%86%E5%91%98%E8%AF%AF%E5%B0%86%E7%BD%91%E7%AB%99%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E6%88%96%E6%98%AF%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE%E5%9C%A8%E6%9F%90%E4%B8%AA%E7%BD%91%E7%AB%99%E7%9B%AE%E5%BD%95%E4%B8%8B%E3%80%82https-github-com-7kbstorm-7kbscan-WebPathBrute5-%E7%9B%AE%E5%BD%95%E6%8E%A2%E6%B5%8Bdirsearch%EF%BC%9Ahttps-github-com-maurosoria-dirsarch%E5%BE%A1%E5%89%91%E5%90%8E%E5%8F%B0%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7dirmap%EF%BC%9Ahttps-github-com-H4ckForjob-dirmap-%E7%BD%91%E7%AB%99waf%E8%AF%86%E5%88%AB1-waf%E5%AE%9A%E4%B9%89waf%EF%BC%8C%E5%8D%B3%EF%BC%9Aweb-Application-Firewall%EF%BC%88web%E5%BA%94%E7%94%A8%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%89%E3%80%82%E5%8F%AF%E4%BB%A5%E9%80%9A%E4%BF%97%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%BA%EF%BC%9A%E7%94%A8%E4%BA%8E%E4%BF%9D%E6%8A%A4%E7%BD%91%E7%AB%99%EF%BC%8C%E9%98%B2%E9%BB%91%E5%AE%A2%E3%80%81%E9%98%B2%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E7%9A%84%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E7%B3%BB%E7%BB%9F%EF%BC%9B%E6%98%AF%E6%9C%80%E6%9C%89%E6%95%88%E3%80%81%E6%9C%80%E7%9B%B4%E6%8E%A5%E7%9A%84web%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4%E4%BA%A7%E5%93%81%E3%80%822-waf%E5%8A%9F%E8%83%BD1%EF%BC%89%E9%98%B2%E6%AD%A2%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%EF%BC%8C%E5%A6%82SQL%E6%B3%A8%E5%85%A5%E3%80%81XSS%E8%B7%A8%E7%AB%99%E3%80%81CSRF%E3%80%81%E7%BD%91%E9%A1%B5%E5%90%8E%E9%97%A8%E7%AD%89%EF%BC%9B2%EF%BC%89%E9%98%B2%E6%AD%A2%E5%90%84%E7%B1%BB%E8%87%AA%E5%8A%A8%E5%8C%96%E6%94%BB%E5%87%BB%EF%BC%8C%E5%A6%82%EF%BC%9A%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E3%80%81%E6%92%9E%E5%BA%93%E3%80%81%E6%89%B9%E9%87%8F%E6%B3%A8%E5%86%8C%E3%80%81%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%96%E7%AD%89%EF%BC%9B3%EF%BC%89%E7%BB%84%E7%BB%87%E5%85%B6%E5%AE%83%E5%B8%B8%E8%A7%81%E5%A8%81%E8%83%81%EF%BC%8C%E5%A6%82%EF%BC%9A%E7%88%AC%E8%99%AB%E3%80%810-DAY%E6%94%BB%E5%87%BB%E3%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E3%80%81%E5%97%85%E6%8E%A2%E3%80%81%E6%95%B0%E6%8D%AE%E7%AF%A1%E6%94%B9%E3%80%81%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE%E3%80%81%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E3%80%81%E5%BA%94%E7%94%A8%E5%B1%82DDOS%E3%80%81%E8%BF%9C%E7%A8%8B%E6%81%B6%E6%84%8F%E5%8C%85%E5%90%AB%E3%80%81%E7%9B%97%E9%93%BE%E3%80%81%E8%B6%8A%E6%9D%83%E3%80%81%E6%89%AB%E6%8F%8F%E7%AD%89%E3%80%823-waf%E8%AF%86%E5%88%ABwafw00fhttps-github-com-EnableSecurity-wafw00fnmap-p80-443-%E2%80%93script-http-waf-detect-ipnmap-p80-443-%E2%80%93script-http-waf-fingerprint-ip-%E7%9B%B8%E5%85%B3%E5%AE%9E%E9%AA%8C-https-www-hetianlab-com-expc-do-ec-ECID172-19-104-182016012110581600001"><span class="toc-number">1.1.</span> <span class="toc-text">网站的最基本组成：服务器（操作系统）、中间件（web容器）、脚本语言数据库为什么要了解这些？举个例子：发现了一个文件读取漏洞，我们需要读&#x2F;etc&#x2F;passwd，如果是Windows系统根本不会存这个文件1. 操作系统- ping判断：Windows的TTL值一般为128，Linux则为64.TTL大于100的一般为Windows，几十的一般为Linux。- nmap -O参数- Windows大小写不敏感，Linux则区分大小写2. 网站服务\容器类型- F12查看响应头server字段- whatweb  https:&#x2F;&#x2F;www.whatweb.net&#x2F;- wappalyzer插件3. 脚本类型php，jsp，asp\aspx，python4. 数据库类型mysql，sqlserver，access，oracle5. CMS识别常见CMS：dedecms(织梦)，discuz，phpcms等。- 在线识别工具http:&#x2F;&#x2F;whatweb.bugscaner.com&#x2F;look&#x2F;- onlinetoolshttps:&#x2F;&#x2F;github.com&#x2F;iceyhexman&#x2F;onlinetoolshttps:&#x2F;&#x2F;pentest.gbpcisa.org&#x2F;## 敏感文件及目录探测1. 敏感文件、目录githubgitsvn.DS_Store.hg.bzrcvsWEB-INF备份文件、2. GitHub泄露开发人员将代码上传到网站，在上传的时候，没有删除重要的一些信息。如邮箱信息，SVN信息，内部账号和密码，数据库连接信息，服务器配置信息等。尤其是邮箱信息和内部账号和密码。这类信息可以通过github上搜索公司的一些特定信息，查看是否有程序员将这些信息上传到了github上。3.git泄露“.git”intitle:”index of”https:&#x2F;&#x2F;github.com&#x2F;lijiejie&#x2F;GitHack4.网站备份文件网站备份文件泄露指将管理员误将网站备份文件或是敏感信息文件存放在某个网站目录下。https:&#x2F;&#x2F;github.com&#x2F;7kbstorm&#x2F;7kbscan-WebPathBrute5. 目录探测dirsearch：https:&#x2F;&#x2F;github.com&#x2F;maurosoria&#x2F;dirsarch御剑后台扫描工具dirmap：https:&#x2F;&#x2F;github.com&#x2F;H4ckForjob&#x2F;dirmap### 网站waf识别1. waf定义waf，即：web Application Firewall（web应用防火墙）。可以通俗的理解为：用于保护网站，防黑客、防网络攻击的安全防护系统；是最有效、最直接的web安全防护产品。2. waf功能1）防止常见的网络攻击，如SQL注入、XSS跨站、CSRF、网页后门等；2）防止各类自动化攻击，如：暴力破解、撞库、批量注册、自动发帖等；3）组织其它常见威胁，如：爬虫、0 DAY攻击、代码分析、嗅探、数据篡改、越权访问、敏感信息泄露、应用层DDOS、远程恶意包含、盗链、越权、扫描等。3. waf识别wafw00fhttps:&#x2F;&#x2F;github.com&#x2F;EnableSecurity&#x2F;wafw00fnmap- p80,443 –script http-waf-detect ipnmap -p80,443 –script http-waf-fingerprint ip#### 相关实验- https:&#x2F;&#x2F;www.hetianlab.com&#x2F;expc.do?ec&#x3D;ECID172.19.104.182016012110581600001</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            渗透测试-网站信息收集
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/2023/07/23/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-07-23T02:15:05.000Z" itemprop="datePublished">2023-07-23</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="网站指纹识别"><a href="#网站指纹识别" class="headerlink" title="网站指纹识别"></a>网站指纹识别</h1><h2 id="网站的最基本组成：服务器（操作系统）、中间件（web容器）、脚本语言数据库为什么要了解这些？举个例子：发现了一个文件读取漏洞，我们需要读-x2F-etc-x2F-passwd，如果是Windows系统根本不会存这个文件1-操作系统-ping判断：Windows的TTL值一般为128，Linux则为64-TTL大于100的一般为Windows，几十的一般为Linux。-nmap-O参数-Windows大小写不敏感，Linux则区分大小写2-网站服务-容器类型-F12查看响应头server字段-whatweb-https-www-whatweb-net-wappalyzer插件3-脚本类型php，jsp，asp-aspx，python4-数据库类型mysql，sqlserver，access，oracle5-CMS识别常见CMS：dedecms-织梦-，discuz，phpcms等。-在线识别工具http-whatweb-bugscaner-com-look-onlinetoolshttps-github-com-iceyhexman-onlinetoolshttps-pentest-gbpcisa-org-敏感文件及目录探测1-敏感文件、目录githubgitsvn-DS-Store-hg-bzrcvsWEB-INF备份文件、2-GitHub泄露开发人员将代码上传到网站，在上传的时候，没有删除重要的一些信息。如邮箱信息，SVN信息，内部账号和密码，数据库连接信息，服务器配置信息等。尤其是邮箱信息和内部账号和密码。这类信息可以通过github上搜索公司的一些特定信息，查看是否有程序员将这些信息上传到了github上。3-git泄露“-git”intitle-”index-of”https-github-com-lijiejie-GitHack4-网站备份文件网站备份文件泄露指将管理员误将网站备份文件或是敏感信息文件存放在某个网站目录下。https-github-com-7kbstorm-7kbscan-WebPathBrute5-目录探测dirsearch：https-github-com-maurosoria-dirsarch御剑后台扫描工具dirmap：https-github-com-H4ckForjob-dirmap-网站waf识别1-waf定义waf，即：web-Application-Firewall（web应用防火墙）。可以通俗的理解为：用于保护网站，防黑客、防网络攻击的安全防护系统；是最有效、最直接的web安全防护产品。2-waf功能1）防止常见的网络攻击，如SQL注入、XSS跨站、CSRF、网页后门等；2）防止各类自动化攻击，如：暴力破解、撞库、批量注册、自动发帖等；3）组织其它常见威胁，如：爬虫、0-DAY攻击、代码分析、嗅探、数据篡改、越权访问、敏感信息泄露、应用层DDOS、远程恶意包含、盗链、越权、扫描等。3-waf识别wafw00fhttps-github-com-EnableSecurity-wafw00fnmap-p80-443-–script-http-waf-detect-ipnmap-p80-443-–script-http-waf-fingerprint-ip-相关实验-https-www-hetianlab-com-expc-do-ec-ECID172-19-104-182016012110581600001"><a href="#网站的最基本组成：服务器（操作系统）、中间件（web容器）、脚本语言数据库为什么要了解这些？举个例子：发现了一个文件读取漏洞，我们需要读-x2F-etc-x2F-passwd，如果是Windows系统根本不会存这个文件1-操作系统-ping判断：Windows的TTL值一般为128，Linux则为64-TTL大于100的一般为Windows，几十的一般为Linux。-nmap-O参数-Windows大小写不敏感，Linux则区分大小写2-网站服务-容器类型-F12查看响应头server字段-whatweb-https-www-whatweb-net-wappalyzer插件3-脚本类型php，jsp，asp-aspx，python4-数据库类型mysql，sqlserver，access，oracle5-CMS识别常见CMS：dedecms-织梦-，discuz，phpcms等。-在线识别工具http-whatweb-bugscaner-com-look-onlinetoolshttps-github-com-iceyhexman-onlinetoolshttps-pentest-gbpcisa-org-敏感文件及目录探测1-敏感文件、目录githubgitsvn-DS-Store-hg-bzrcvsWEB-INF备份文件、2-GitHub泄露开发人员将代码上传到网站，在上传的时候，没有删除重要的一些信息。如邮箱信息，SVN信息，内部账号和密码，数据库连接信息，服务器配置信息等。尤其是邮箱信息和内部账号和密码。这类信息可以通过github上搜索公司的一些特定信息，查看是否有程序员将这些信息上传到了github上。3-git泄露“-git”intitle-”index-of”https-github-com-lijiejie-GitHack4-网站备份文件网站备份文件泄露指将管理员误将网站备份文件或是敏感信息文件存放在某个网站目录下。https-github-com-7kbstorm-7kbscan-WebPathBrute5-目录探测dirsearch：https-github-com-maurosoria-dirsarch御剑后台扫描工具dirmap：https-github-com-H4ckForjob-dirmap-网站waf识别1-waf定义waf，即：web-Application-Firewall（web应用防火墙）。可以通俗的理解为：用于保护网站，防黑客、防网络攻击的安全防护系统；是最有效、最直接的web安全防护产品。2-waf功能1）防止常见的网络攻击，如SQL注入、XSS跨站、CSRF、网页后门等；2）防止各类自动化攻击，如：暴力破解、撞库、批量注册、自动发帖等；3）组织其它常见威胁，如：爬虫、0-DAY攻击、代码分析、嗅探、数据篡改、越权访问、敏感信息泄露、应用层DDOS、远程恶意包含、盗链、越权、扫描等。3-waf识别wafw00fhttps-github-com-EnableSecurity-wafw00fnmap-p80-443-–script-http-waf-detect-ipnmap-p80-443-–script-http-waf-fingerprint-ip-相关实验-https-www-hetianlab-com-expc-do-ec-ECID172-19-104-182016012110581600001" class="headerlink" title="网站的最基本组成：服务器（操作系统）、中间件（web容器）、脚本语言数据库为什么要了解这些？举个例子：发现了一个文件读取漏洞，我们需要读&#x2F;etc&#x2F;passwd，如果是Windows系统根本不会存这个文件1. 操作系统- ping判断：Windows的TTL值一般为128，Linux则为64.TTL大于100的一般为Windows，几十的一般为Linux。- nmap -O参数- Windows大小写不敏感，Linux则区分大小写2. 网站服务\容器类型- F12查看响应头server字段- whatweb  https://www.whatweb.net/- wappalyzer插件3. 脚本类型php，jsp，asp\aspx，python4. 数据库类型mysql，sqlserver，access，oracle5. CMS识别常见CMS：dedecms(织梦)，discuz，phpcms等。- 在线识别工具http://whatweb.bugscaner.com/look/- onlinetoolshttps://github.com/iceyhexman/onlinetoolshttps://pentest.gbpcisa.org/## 敏感文件及目录探测1. 敏感文件、目录githubgitsvn.DS_Store.hg.bzrcvsWEB-INF备份文件、2. GitHub泄露开发人员将代码上传到网站，在上传的时候，没有删除重要的一些信息。如邮箱信息，SVN信息，内部账号和密码，数据库连接信息，服务器配置信息等。尤其是邮箱信息和内部账号和密码。这类信息可以通过github上搜索公司的一些特定信息，查看是否有程序员将这些信息上传到了github上。3.git泄露“.git”intitle:”index of”https://github.com/lijiejie/GitHack4.网站备份文件网站备份文件泄露指将管理员误将网站备份文件或是敏感信息文件存放在某个网站目录下。https://github.com/7kbstorm/7kbscan-WebPathBrute5. 目录探测dirsearch：https://github.com/maurosoria/dirsarch御剑后台扫描工具dirmap：https://github.com/H4ckForjob/dirmap### 网站waf识别1. waf定义waf，即：web Application Firewall（web应用防火墙）。可以通俗的理解为：用于保护网站，防黑客、防网络攻击的安全防护系统；是最有效、最直接的web安全防护产品。2. waf功能1）防止常见的网络攻击，如SQL注入、XSS跨站、CSRF、网页后门等；2）防止各类自动化攻击，如：暴力破解、撞库、批量注册、自动发帖等；3）组织其它常见威胁，如：爬虫、0 DAY攻击、代码分析、嗅探、数据篡改、越权访问、敏感信息泄露、应用层DDOS、远程恶意包含、盗链、越权、扫描等。3. waf识别wafw00fhttps://github.com/EnableSecurity/wafw00fnmap- p80,443 –script http-waf-detect ipnmap -p80,443 –script http-waf-fingerprint ip#### 相关实验- https://www.hetianlab.com/expc.do?ec=ECID172.19.104.182016012110581600001"></a><em>网站的最基本组成：服务器（操作系统）、中间件（web容器）、脚本语言数据库<br>为什么要了解这些？举个例子：发现了一个文件读取漏洞，我们需要读&#x2F;etc&#x2F;passwd，如果是Windows系统根本不会存这个文件</em><br>1. 操作系统<br>- ping判断：Windows的TTL值一般为128，Linux则为64.TTL大于100的一般为Windows，几十的一般为Linux。<br>- nmap -O参数<br>- Windows大小写不敏感，Linux则区分大小写<br>2. 网站服务\容器类型<br>- F12查看响应头server字段<br>- whatweb  <a target="_blank" rel="noopener" href="https://www.whatweb.net/">https://www.whatweb.net/</a><br>- wappalyzer插件<br>3. 脚本类型<br>php，jsp，asp\aspx，python<br>4. 数据库类型<br>mysql，sqlserver，access，oracle<br>5. CMS识别<br>常见CMS：dedecms(织梦)，discuz，phpcms等。<br>- 在线识别工具<br><a target="_blank" rel="noopener" href="http://whatweb.bugscaner.com/look/">http://whatweb.bugscaner.com/look/</a><br>- onlinetools<br><a target="_blank" rel="noopener" href="https://github.com/iceyhexman/onlinetools">https://github.com/iceyhexman/onlinetools</a><br><a target="_blank" rel="noopener" href="https://pentest.gbpcisa.org/">https://pentest.gbpcisa.org/</a><br>## 敏感文件及目录探测<br>1. 敏感文件、目录<br>github<br>git<br>svn<br>.DS_Store<br>.hg<br>.bzr<br>cvs<br>WEB-INF<br>备份文件、<br>2. GitHub泄露<br>开发人员将代码上传到网站，在上传的时候，没有删除重要的一些信息。如邮箱信息，SVN信息，内部账号和密码，数据库连接信息，服务器配置信息等。尤其是邮箱信息和内部账号和密码。这类信息可以通过github上搜索公司的一些特定信息，查看是否有程序员将这些信息上传到了github上。<br>3.git泄露<br>“.git”intitle:”index of”<br><a target="_blank" rel="noopener" href="https://github.com/lijiejie/GitHack">https://github.com/lijiejie/GitHack</a><br>4.网站备份文件<br>网站备份文件泄露指将管理员误将网站备份文件或是敏感信息文件存放在某个网站目录下。<br><a target="_blank" rel="noopener" href="https://github.com/7kbstorm/7kbscan-WebPathBrute">https://github.com/7kbstorm/7kbscan-WebPathBrute</a><br>5. 目录探测<br>dirsearch：<a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsarch">https://github.com/maurosoria/dirsarch</a><br>御剑后台扫描工具<br>dirmap：<a target="_blank" rel="noopener" href="https://github.com/H4ckForjob/dirmap">https://github.com/H4ckForjob/dirmap</a><br>### 网站waf识别<br>1. waf定义<br>waf，即：web Application Firewall（web应用防火墙）。可以通俗的理解为：用于保护网站，防黑客、防网络攻击的安全防护系统；是最有效、最直接的web安全防护产品。<br>2. waf功能<br>1）防止常见的网络攻击，如SQL注入、XSS跨站、CSRF、网页后门等；<br>2）防止各类自动化攻击，如：暴力破解、撞库、批量注册、自动发帖等；<br>3）组织其它常见威胁，如：爬虫、0 DAY攻击、代码分析、嗅探、数据篡改、越权访问、敏感信息泄露、应用层DDOS、远程恶意包含、盗链、越权、扫描等。<br>3. waf识别<br>wafw00f<br><a target="_blank" rel="noopener" href="https://github.com/EnableSecurity/wafw00f">https://github.com/EnableSecurity/wafw00f</a><br>nmap- p80,443 –script http-waf-detect ip<br>nmap -p80,443 –script http-waf-fingerprint ip<br>#### 相关实验<br>- <a target="_blank" rel="noopener" href="https://www.hetianlab.com/expc.do?ec=ECID172.19.104.182016012110581600001">https://www.hetianlab.com/expc.do?ec=ECID172.19.104.182016012110581600001</a></h2>
+        
+    </section>
+</article>
+
+
+
+<div class="comments">
+    <div id="comments"></div>
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+    new Gitalk({
+        clientID: "7fbe80427f54741e289f",
+        clientSecret: "f34ed5fd92e54c9000bd37ba951948cb939deff5",
+        repo: "sanonz.github.io",
+        owner: "sanonz",
+        admin: ["sanonz"],
+        id: "c242aedb956ece9981f44594aa50872c",
+        distractionFreeMode: true,
+        title: "渗透测试-网站信息收集",
+        body: "http://example.com/2023/07/23/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/",
+        labels: []
+    }).render('comments');
+    </script>
+</div>
+
+
+
+            </div>
+        </div>
+
+        
+            
+            <a id="pagenext" href="/2023/07/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-IP%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-next" title="渗透测试-IP端口信息收集"><i class="icon-arrow-right"></i></a>
+            
+            
+        
+
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e4027971a230b210f4671f485b33846a";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://unpkg.com/jquery@1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle('normal', slideDone);
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp('normal', slideDone);
+            }, 3000);
+        }
+
+        function slideDone() {
+            if (nodes.navInner.css('display') !== 'none') {
+                nodes.navInner.css('display', '');
+            }
+        }
+
+        $(window).on('resize', function() {
+            if ($(this).width() > 960) {
+                nodes.navInner.css('display', '');
+            }
+        });
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>
