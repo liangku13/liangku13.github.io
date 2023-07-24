@@ -136,6 +136,66 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2023/07/24/AWVS%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">AWVS工具介绍及应用场景</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-07-24T01:56:23.000Z" itemprop="datePublished">2023-07-24</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="漏洞扫描器之AWVS"><a href="#漏洞扫描器之AWVS" class="headerlink" title="漏洞扫描器之AWVS"></a>漏洞扫描器之AWVS</h1><ol>
+<li>漏洞扫描<br>漏洞扫描是指基于漏洞数据库，通过扫描等手段对指定的远程或者本地计算机系统的安全脆弱性进行检测，发现可利用漏洞的一种安全（渗透攻击）行为。</li>
+<li>扫描工具</li>
+</ol>
+<ul>
+<li>针对某类漏洞的：SQL注入（sqlmap）、weblogic（weblogicscan）</li>
+<li>针对某类CMS的：word press（wpscan）、dedecms（dedecmsscan）</li>
+<li>针对系统应用层：nessus</li>
+<li>针对某类框架的：struts2（struts2漏洞检查工具）、spring boot（SB-Actuator）</li>
+<li>针对web服务的：burp suite、xray、awvs</li>
+</ul>
+<ol start="3">
+<li>AWVS<br>是一款知名的网络漏洞扫描工具，它通过网络爬虫测试你的网络安全，检测流行安全漏洞。<br>1）功能特点</li>
+</ol>
+<ul>
+<li>webscanner：核心功能，web安全漏洞扫描（深度，宽度，限制20个）</li>
+<li>sitecrawler：爬虫功能，遍历站点目录结构</li>
+<li>target finder：端口扫描，找出web服务器（80、443）</li>
+<li>subdomainscanner：子域名扫描器，利用DNS查询</li>
+<li>blind sql lngector：盲注工具</li>
+<li>http editor http：协议数据包编辑器</li>
+<li>HTTP Sniffer：HTTP协议嗅探器（fiddler，wireshark，bp）</li>
+<li>Authentiction Tester：web认证破解工具</li>
+</ul>
+<h2 id="AWVS安装"><a href="#AWVS安装" class="headerlink" title="AWVS安装"></a>AWVS安装</h2><ol>
+<li>下载：<span alt="modern"><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/6f5533db1a6245">https://cowtransfer.com/s/6f5533db1a6245</a></span><br>提取码：<span alt="blank">hetianlab</span></li>
+<li>破解</li>
+</ol>
+<ul>
+<li>将patch.exe和patch.dat复制到AWVS安装目录</li>
+</ul>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2023/07/23/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">渗透测试-网站信息收集</a>
         </h1>
         
@@ -557,37 +617,6 @@
         
         <p>什么是ssrf<br>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。<br>我理解的是相当于内网穿透，你获取到其中一个内网主机，可以用这个内网主机作为服务器向其他的内网机器发起攻击。SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。</p>
 <p>ssrf的利用<br>分享，通过URL地址分享网页内容，通过URL获取目标页标签等内容<br>转码服务，适应硬件设备的大小；<br>图片的加载与下载<br>图片，文章的收藏；<br>产生SSRF漏洞的函数<br>file_get_contents<br>fsockopen()<br>ssrf漏洞利用<br>1.可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;<br>2.攻击运行在内网或本地的应用程序（比如溢出）;<br>3.对内网web应用进行指纹识别，通过访问默认文件实现;<br>4.攻击内外网的web应用，主要是使用get参数就可以实现的攻击（比如struts2，sqli等）;<br>5.利用file协议读取本地文件等。.<br>6.各个协议调用探针：http,file,dict,ftp,gopher等<br>本题目就是运用第六种，gopher协议。</p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2023/06/16/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/">网络安全学习</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/index.html">
-    
-    <i class="icon-calendar vm"></i>
-    
-    <time class="vm" datetime="2023-06-16T15:34:50.000Z" itemprop="datePublished">2023-06-16</time>
-</a>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>网络安全：<br>信息安全基本要求：机密性、完整性、可用性<br>网络安全的攻防体系<br>1.攻击技术<br>（1）网络监听：自己不主动去攻击别人，而是在计算机上设置一个程序去监听目标计算机与其他计算机通信的数据。<br>（2）网络扫描：利用程序去扫描目标计算机开放的端口等，目的是发现漏洞，为入侵该计算机做准备。<br>（3）网络入侵：当探测发现对方存在漏洞后，入侵到目标计算机获取信息。<br>（4）网络后门：成功入侵目标计算机后，为了实现对”战利品“的长期控制，在目标计算机中种植木马等后门。<br>（5）网络隐身：入侵完毕退出目标计算机后，将自己入侵的痕迹清除，从而防止被对方管理员发现。<br>2.防御技术<br>（1）安全操作系统和操作系统的安全配置：操作系统是网络安全的关键。<br>（2）加密技术：为了防止被监听和数据被盗取，将所有的数据进行加密。<br>（3）防火墙技术：利用防火墙，对传输的数据进行限制，从而防止被入侵。<br>（4）入侵检测：如果网络防线最终被攻破，需要及时发出被入侵的警报。<br>（5）网络安全协议：保证传输的数据不被截获和监听。</p>
-<p>常用网络命令<br>1.ping命令：通过发送ICMP包来验证与另一台TCP&#x2F;IP计算机的IP级连接。检测网络的连接性和可到达性，验证与对方计算机的连通性。<br>2.ipconfig命令：显示所有TCP&#x2F;IP网络配置信息、刷新动态主机配置协议（DHCP)和域名系统(DNS)设置。<br>3.netstat命令：显示活动的连接、计算机监听的端口、以太网统计信息、IP路由表、IPv4统计信息（IP,ICMP,TCP和UDP协议)。<br>4.net命令：用来查看计算机上的用户列表、添加和删除用户、与对方计算机建立连接、启动或者停止某网络服务等。<br>5.at命令：建立一个计划命令，并设置在某一时刻执行。但是必须首先与对方建立信任连接，知道对方计算机系统管理员密码，在对方计算机上建立一个计划任务。<br>6.tracert命令：tracert(跟踪路由)是路由跟踪实用程序，用于确定IP数据报访问目标所采取的路径。</p>
 
         
     </section>
