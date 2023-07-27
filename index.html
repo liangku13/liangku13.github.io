@@ -136,6 +136,72 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2023/07/27/SQL%E6%B3%A8%E5%85%A5sqlmap/">SQL注入sqlmap</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-07-27T00:49:43.000Z" itemprop="datePublished">2023-07-27</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h1 id="sqlmap功能及应用"><a href="#sqlmap功能及应用" class="headerlink" title="sqlmap功能及应用"></a>sqlmap功能及应用</h1><ol>
+<li>手册</li>
+</ol>
+<ul>
+<li>-h 查看基本用法及命令行参数</li>
+<li>-hh 查看所有用法及命令行参数</li>
+<li>-version 查看版本信息</li>
+</ul>
+<ol start="2">
+<li>检测漏洞</li>
+</ol>
+<ul>
+<li>-u：url</li>
+<li>-m：批量url</li>
+</ul>
+<ol start="3">
+<li>枚举数据库</li>
+</ol>
+<ul>
+<li>–dbs：枚举所有数据库</li>
+<li>–current-db：当前数据库</li>
+<li>-D：上一步的数据库名</li>
+<li>–tables：枚举数据表</li>
+</ul>
+<ol start="4">
+<li>脱库（慎用）</li>
+</ol>
+<ul>
+<li>–dump：下载数据</li>
+</ul>
+<ol start="5">
+<li>枚举数据包列</li>
+</ol>
+<ul>
+<li>-T：上一步的数据表</li>
+<li>–columns：枚举数据库表列</li>
+</ul>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2023/07/24/AWVS%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">AWVS工具介绍及应用场景</a>
         </h1>
         
@@ -586,37 +652,6 @@
 <p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
 <p>“””.format(host,cookie)</p>
 <p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2023/06/29/ssrf%E8%AF%A6%E8%A7%A3/">ssrf详解</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/index.html">
-    
-    <i class="icon-calendar vm"></i>
-    
-    <time class="vm" datetime="2023-06-29T13:30:11.000Z" itemprop="datePublished">2023-06-29</time>
-</a>
-
-            
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>什么是ssrf<br>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。<br>我理解的是相当于内网穿透，你获取到其中一个内网主机，可以用这个内网主机作为服务器向其他的内网机器发起攻击。SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。</p>
-<p>ssrf的利用<br>分享，通过URL地址分享网页内容，通过URL获取目标页标签等内容<br>转码服务，适应硬件设备的大小；<br>图片的加载与下载<br>图片，文章的收藏；<br>产生SSRF漏洞的函数<br>file_get_contents<br>fsockopen()<br>ssrf漏洞利用<br>1.可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;<br>2.攻击运行在内网或本地的应用程序（比如溢出）;<br>3.对内网web应用进行指纹识别，通过访问默认文件实现;<br>4.攻击内外网的web应用，主要是使用get参数就可以实现的攻击（比如struts2，sqli等）;<br>5.利用file协议读取本地文件等。.<br>6.各个协议调用探针：http,file,dict,ftp,gopher等<br>本题目就是运用第六种，gopher协议。</p>
 
         
     </section>
