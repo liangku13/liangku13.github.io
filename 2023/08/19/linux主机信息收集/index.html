@@ -10,7 +10,7 @@
     <title>linux主机信息收集 | Hexo</title>
     <meta name="author" content="John Doe" />
     <meta name="keywords" content="" />
-    <meta name="description" content="系统架构uname -a打印系统信息cat &amp;#x2F;etc&amp;#x2F;issue文件&amp;#x2F;etc&amp;#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。cat &amp;#x2F;etc&amp;#x2F;*-releasecat &amp;#x2F;etc&amp;#x2F;*-release，&amp;#x2F;etc&amp;#x2F;redhat-release 文件包含一个被破解析以获取信息的描述行。cat &amp;#x2F;proc&amp;#x2F;version&amp;#x2F;proc&amp;#x2F;versi" />
+    <meta name="description" content="系统架构uname -a 打印系统信息cat &amp;#x2F;etc&amp;#x2F;issue文件&amp;#x2F;etc&amp;#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。cat &amp;#x2F;etc&amp;#x2F;-release cat &amp;#x2F;etc&amp;#x2F;-release，&amp;#x2F;etc&amp;#x2F;redhat-release 文件包含一个被破解析以获取信息的描述行。cat &amp;#x2F;proc&amp;#x2F;version &amp;#x2F;proc&amp;#x2F;vers" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -127,44 +127,17 @@
     <section class="article-body markdown-body">
         
         <h1 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h1><ol>
-<li>uname -a<blockquote>
-<p>打印系统信息</p>
-</blockquote>
-</li>
-<li>cat &#x2F;etc&#x2F;issue<blockquote>
-<p>文件&#x2F;etc&#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。</p>
-</blockquote>
-</li>
-<li>cat &#x2F;etc&#x2F;*-release<blockquote>
-<p>cat &#x2F;etc&#x2F;*-release，&#x2F;etc&#x2F;redhat-release 文件包含一个被破解析以获取信息的描述行。</p>
-</blockquote>
-</li>
-<li>cat &#x2F;proc&#x2F;version<blockquote>
-<p>&#x2F;proc&#x2F;version指定了Linux内核的版本，用于编译内核的gcc的版本壹基金内核编译的时间。他还包含器的用户名。</p>
-</blockquote>
-</li>
-<li>cat &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;version<blockquote>
-<p>&#x2F;proc&#x2F;sys&#x2F;kerne&#x2F;中的文件可以用来调整和监视Linux内核操作中的各种活动。</p>
-</blockquote>
-</li>
+<li>uname -a<br> 打印系统信息</li>
+<li>cat &#x2F;etc&#x2F;issue<br>文件&#x2F;etc&#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。</li>
+<li>cat &#x2F;etc&#x2F;<em>-release<br> cat &#x2F;etc&#x2F;</em>-release，&#x2F;etc&#x2F;redhat-release 文件包含一个被破解析以获取信息的描述行。</li>
+<li>cat &#x2F;proc&#x2F;version<br> &#x2F;proc&#x2F;version指定了Linux内核的版本，用于编译内核的gcc的版本壹基金内核编译的时间。他还包含器的用户名。</li>
+<li>cat &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;version<br> &#x2F;proc&#x2F;sys&#x2F;kerne&#x2F;中的文件可以用来调整和监视Linux内核操作中的各种活动。</li>
 </ol>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>ps -ef<br>ps aux</p>
-<blockquote>
-<p>例出当前进程快照<br>ls -al &#x2F;proc&#x2F;<br>&#x2F;proc是非常特殊的，他也是一个虚拟文件系统。它有时被称为过程信息伪文件系统。 它不包含“真是”文件，而是包含运行时系统信息（例如系统内存，安装的设备，硬件配置）。<br>ls -al &#x2F;proc&#x2F;99<br>查看关于PID 99的信息。<br>top<br>top命令显示您的Linux机器的处理器活动，并显示实时管理的任务。 它会显示正在使用的处理器和内存以及运行进程等其他信息。<br>id<br>找到用户的UID或GID等信息<br>w<br>显示登录到Linux服务器的人员<br>whoami<br>显示当前用户名<br>last<br>显示最后一次登录的用户名<br> cat &#x2F;etc&#x2F;master.passwd<br>&#x2F;etc &#x2F;eertcmaster.passwd on BSD ststems<br>cat &#x2F;etc&#x2F;suders<br>cat &#x2F;etc&#x2F;suders 文件内容是使用sudo命令必须遵守的原则<br>sudo -V<br>打印sudo版本字符串</p>
-</blockquote>
-<h3 id="SSH服务信息"><a href="#SSH服务信息" class="headerlink" title="SSH服务信息"></a>SSH服务信息</h3><p>cat ~&#x2F;.ssh&#x2F;authorized_keys</p>
-<blockquote>
-<p>使用公钥认证，认证实体具有公钥和私钥。<br>私钥保存在你登陆的计算机上，而公钥存储在要登陆的所有计算机上的 .ssh&#x2F;authorized_keys文件中。<br>cat <del>&#x2F;.ssh&#x2F;id_rsa.pub<br>RSA 私钥会保存在你的home目录中：ssh&#x2F;id_rsa。<br>cat</del>&#x2F;.ssh&#x2F;known_hosts<br>ssh会把每个你访问过计算机的公钥(public key)都记录在这个文件中<br>cat<del>&#x2F;.ssh&#x2F;identity.pub<br>文件identity.pub包含你的公钥，可以将其添加到其他系统的authorized_keys文件中。<br>cat</del>&#x2F;.ssh&#x2F;identity<br>ssh客户端允许您选择读取RSA或DSA身份验证标识（私钥）的文件。<br>cat&#x2F;etc&#x2F;ssh&#x2F;ssh_config<br>OpenSSH SSH服务端配置文件<br>service –status-all<br>检查所有服务状态<br>systemctl -a<br>列出安装在文件系统中的所有单元<br>service servicemname start<br>systemctl start servicename<br>启动某个服务</p>
-</blockquote>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>ps -ef<br>ps aux<br>例出当前进程快照<br>ls -al &#x2F;proc&#x2F;<br> &#x2F;proc是非常特殊的，他也是一个虚拟文件系统。它有时被称为过程信息伪文件系统。 它不包含“真是”文件，而是包含运行时系统信息（例如系统内存，安装的设备，硬件配置）。<br>ls -al &#x2F;proc&#x2F;99<br> 查看关于PID 99的信息。<br>top<br> top命令显示您的Linux机器的处理器活动，并显示实时管理的任务。 它会显示正在使用的处理器和内存以及运行进程等其他信息。<br>id<br> 找到用户的UID或GID等信息<br>w<br> 显示登录到Linux服务器的人员<br>whoami<br> 显示当前用户名<br>last<br> 显示最后一次登录的用户名<br> cat &#x2F;etc&#x2F;master.passwd<br> &#x2F;etc &#x2F;eertcmaster.passwd on BSD ststems<br>cat &#x2F;etc&#x2F;suders<br> cat &#x2F;etc&#x2F;suders 文件内容是使用sudo命令必须遵守的原则<br>sudo -V<br> 打印sudo版本字符串</p>
+<h3 id="SSH服务信息"><a href="#SSH服务信息" class="headerlink" title="SSH服务信息"></a>SSH服务信息</h3><p>cat <del>&#x2F;.ssh&#x2F;authorized_keys<br> 使用公钥认证，认证实体具有公钥和私钥。<br>私钥保存在你登陆的计算机上，而公钥存储在要登陆的所有计算机上的 .ssh&#x2F;authorized_keys文件中。<br>cat ~&#x2F;.ssh&#x2F;id_rsa.pub<br> RSA 私钥会保存在你的home目录中：ssh&#x2F;id_rsa。<br>cat</del>&#x2F;.ssh&#x2F;known_hosts<br> ssh会把每个你访问过计算机的公钥(public key)都记录在这个文件中<br>cat<del>&#x2F;.ssh&#x2F;identity.pub<br> 文件identity.pub包含你的公钥，可以将其添加到其他系统的authorized_keys文件中。<br>cat</del>&#x2F;.ssh&#x2F;identity<br> ssh客户端允许您选择读取RSA或DSA身份验证标识（私钥）的文件。<br>cat&#x2F;etc&#x2F;ssh&#x2F;ssh_config<br> OpenSSH SSH服务端配置文件<br>service –status-all<br> 检查所有服务状态<br>systemctl -a<br> 列出安装在文件系统中的所有单元<br>service servicemname start<br>systemctl start servicename<br> 启动某个服务</p>
 <ol>
-<li>安全<br>iptables -L<blockquote>
-<p>列出所有规则链。<br>iptables -F<br>删除选定规则链中得所有规则<br>iptables -A INPUT -p icmp -m icmp -icmp-type 0 -j ACCEPT<br>请执行iptables -p icmp-help 获得跟多信息。<br>iptables -A INPUT -p tcp -m tcp -sport 80 -m state -state RELATED,ESTABLISHED -j ACCEPT<br>允许从&#x2F;到 dst 端口80得tcp连接<br>iptables -A OUTPUT -p tcp -m tcp -dport 80 -m state -state NEW,RELATED,ESTABLISHED,ESTABLISHED -j ACCEPT<br>允许从&#x2F;到 dst 端口80得TCP连接<br>iptables -A INPUT -p udp -m udp -sport 53 -m state -state RELATED,ESTABLISHED -j ACCEPT<br>允许来自src端口80得udp连接</p>
-</blockquote>
-</li>
-<li>网络<br>ipconfig -a<blockquote>
-<p>显示当前可用得所有接口<br>hostname<br>显示或设置系统得主机名称<br>dnsdomainname<br>显示系统得DNS域名<br>netstat -antp<br>显示网络状态<br>cat&#x2F;etc&#x2F;network&#x2F;interfaces<br>&#x2F;etc&#x2F;network&#x2F;interfaces 文件包含网络接口配置信息<br>cat&#x2F;etc&#x2F;sysconfig&#x2F;network<br>&#x2F;etc&#x2F;sysconfig&#x2F;network 文件用于指定有关服务器上所需网络配置得信息<br>cat&#x2F;etc&#x2F;networks<br>&#x2F;etc&#x2F;networks 是一个简单得ASVII文件，描述这些网络得已知DARPA网络和符号名称<br>find &#x2F; -writable -type d 2&gt;&#x2F;dev&#x2F;null<br>找出可写出得文件夹<br>find &#x2F; -perm -222 -type d 2&gt;&#x2F;dev&#x2F;null<br>找出可写出得文件夹<br>find &#x2F; -perm -o w -type d 2&gt;&#x2F;dev&#x2F;null<br>找出可写出得文件夹<br>find &#x2F; -perm -o x -type d 2&gt;&#x2F;dev&#x2F;null<br>找出可写出得文件夹<br>find &#x2F; (-perm -o w -perm -o x) -type d 2&gt;&#x2F;dev&#x2F;null<br>找出可写可执行的文件夹<br>find &#x2F; -xdev -type d (-perm -0002 -a ! -perm -1000) -print<br>找出可写得文件<br>find &#x2F;der -xdev (-nouser -o -hogroup)-print<br>找出不是所有者得文件</p>
-</blockquote>
-</li>
+<li>安全<br>iptables -L<br> 列出所有规则链。<br>iptables -F<br> 删除选定规则链中得所有规则<br>iptables -A INPUT -p icmp -m icmp -icmp-type 0 -j ACCEPT<br> 请执行iptables -p icmp-help 获得跟多信息。<br>iptables -A INPUT -p tcp -m tcp -sport 80 -m state -state RELATED,ESTABLISHED -j ACCEPT<br> 允许从&#x2F;到 dst 端口80得tcp连接<br>iptables -A OUTPUT -p tcp -m tcp -dport 80 -m state -state NEW,RELATED,ESTABLISHED,ESTABLISHED -j ACCEPT<br> 允许从&#x2F;到 dst 端口80得TCP连接<br>iptables -A INPUT -p udp -m udp -sport 53 -m state -state RELATED,ESTABLISHED -j ACCEPT<br> 允许来自src端口80得udp连接</li>
+<li>网络<br>ipconfig -a<br> 显示当前可用得所有接口<br>hostname<br> 显示或设置系统得主机名称<br>dnsdomainname<br> 显示系统得DNS域名<br>netstat -antp<br> 显示网络状态<br>cat&#x2F;etc&#x2F;network&#x2F;interfaces<br> &#x2F;etc&#x2F;network&#x2F;interfaces 文件包含网络接口配置信息<br>cat&#x2F;etc&#x2F;sysconfig&#x2F;network<br> &#x2F;etc&#x2F;sysconfig&#x2F;network 文件用于指定有关服务器上所需网络配置得信息<br>cat&#x2F;etc&#x2F;networks<br> &#x2F;etc&#x2F;networks 是一个简单得ASVII文件，描述这些网络得已知DARPA网络和符号名称<br>find &#x2F; -writable -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -222 -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -o w -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -o x -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; (-perm -o w -perm -o x) -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写可执行的文件夹<br>find &#x2F; -xdev -type d (-perm -0002 -a ! -perm -1000) -print<br> 找出可写得文件<br>find &#x2F;der -xdev (-nouser -o -hogroup)-print<br> 找出不是所有者得文件</li>
 <li>程序</li>
 </ol>
 
