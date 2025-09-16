@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>渗透测试-IP端口信息收集 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="IP信息收集 IP反查域名http:&#x2F;&#x2F;stool.chinaz.com&#x2F;samehttps:&#x2F;&#x2F;tools.ipip.net&#x2F;ipdomain.php如果渗透目标为虚拟主机，那么通过IP反查到的域名信息很有价值，因为一台物理服务器上面可能运行多个虚拟主机。这些虚拟主机有不同的域名，但通常公用一个IP地址。如果你知道有哪些网站共用这台服务器，就有可能通过此台服务器上其他网站的漏洞获取服务器控制权，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试-IP端口信息收集">
+<meta property="og:url" content="http://example.com/2023/07/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-IP%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="IP信息收集 IP反查域名http:&#x2F;&#x2F;stool.chinaz.com&#x2F;samehttps:&#x2F;&#x2F;tools.ipip.net&#x2F;ipdomain.php如果渗透目标为虚拟主机，那么通过IP反查到的域名信息很有价值，因为一台物理服务器上面可能运行多个虚拟主机。这些虚拟主机有不同的域名，但通常公用一个IP地址。如果你知道有哪些网站共用这台服务器，就有可能通过此台服务器上其他网站的漏洞获取服务器控制权，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-21T11:35:58.000Z">
+<meta property="article:modified_time" content="2023-07-22T08:12:13.636Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-渗透测试-IP端口信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-IP%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-07-21T11:35:58.000Z" itemprop="datePublished">2023-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      渗透测试-IP端口信息收集
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="IP信息收集"><a href="#IP信息收集" class="headerlink" title="IP信息收集"></a>IP信息收集</h1><ul>
+<li>IP反查域名<br><em><a target="_blank" rel="noopener" href="http://stool.chinaz.com/same">http://stool.chinaz.com/same</a></em><br><em><a target="_blank" rel="noopener" href="https://tools.ipip.net/ipdomain.php">https://tools.ipip.net/ipdomain.php</a></em><br>如果渗透目标为虚拟主机，那么通过IP反查到的域名信息很有价值，因为一台物理服务器上面可能运行多个虚拟主机。这些虚拟主机有不同的域名，但通常公用一个IP地址。如果你知道有哪些网站共用这台服务器，就有可能通过此台服务器上其他网站的漏洞获取服务器控制权，进而迂回获取渗透目标的权限，这种技术也陈为“旁注”。</li>
+<li>CDN<br>CDN既内容分发网络。CDN是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率</li>
+</ul>
+<ol>
+<li>IP信息收集-判断CDN</li>
+</ol>
+<ul>
+<li>多地ping<br><em><a target="_blank" rel="noopener" href="http://ping.chinaz.com/">http://ping.chinaz.com/</a></em><br><em><a target="_blank" rel="noopener" href="http://www.webkaka.com/Ping.aspx">http://www.webkaka.com/Ping.aspx</a></em></li>
+</ul>
+<ol start="2">
+<li>IP信息收集-绕过CDN</li>
+</ol>
+<ul>
+<li>国外访问<br><em><a target="_blank" rel="noopener" href="https://asm.ca.com/en/ping.php">https://asm.ca.com/en/ping.php</a></em></li>
+<li>查询子域名的IP</li>
+<li>phpinfo文件</li>
+<li>Mx记录邮件服务</li>
+<li>查询历史DNS记录<br><em><a target="_blank" rel="noopener" href="https://dnsdb.io/zh-cn/">https://dnsdb.io/zh-cn/</a></em><br><em><a target="_blank" rel="noopener" href="https://securitytrails.com/">https://securitytrails.com/</a></em><br><em><a target="_blank" rel="noopener" href="https://x.threatbook/cn/">https://x.threatbook/cn/</a></em></li>
+</ul>
+<h4 id="IP信息收集-C段存活主机探测"><a href="#IP信息收集-C段存活主机探测" class="headerlink" title="IP信息收集-C段存活主机探测"></a>IP信息收集-C段存活主机探测</h4><ul>
+<li>Nmap<br>nmap -sP <a target="_blank" rel="noopener" href="http://www.xxx.com/24">www.XXX.com/24</a> || nmap -sP 192.168.1.*<br><a target="_blank" rel="noopener" href="https://github.com/se55i0n/Cwebscanner">https://github.com/se55i0n/Cwebscanner</a></li>
+</ul>
+<h2 id="端口信息收集"><a href="#端口信息收集" class="headerlink" title="端口信息收集"></a>端口信息收集</h2><p><em>端口简介</em>：在linternet上，个主机间通过TCP&#x2F;IP协议发送和接受数据包，各个数据包根据器目的的主机的IP地址来进行互联网络中的路由选择，从而顺利的将数据包顺利的传送给目标主机</p>
+<ol>
+<li>协议端口<br>根据提供服务类型的不同，端口可分为以下两种：<br>TCP端口：TCP是一种面向连接的可靠的传输层通信协议<br>UDP端口：UDP是一种无连接的不可靠的传输层协议<br>TCP协议和UDP协议是独立的，因此各自的端口号也相互独立。</li>
+<li>端口类型<br>周知端口：众所周知的端口号，范围：0-1023，如80端口是WWW服务<br>动态端口：一般不固定分配某种服务，范围：49152-65535<br>注册端口：范围：1024-49151，用于分配给用户进程或程序</li>
+<li>端口作用<br>把服务器比作房子，而端口可比作门；<br>窃贼想要在没经过房子主人允许进入房子，就需要破门而入；<br>窃贼在破门之前，得先了解房子开了几扇门，门后是什么东西，也就是踩点；踩点得到的信息越多对于窃贼顺利的窃取有价值的东西至关重要。</li>
+<li>渗透端口</li>
+<li>FTP-21<br>FTP：文件传输协议，使用TCP端口20、21、20用于传输数据，21用于传输控制信息<br>（1）ftp基础爆破：owasp的Bruter，hydra以及msf中的ftp爆破模块。<br>（2）ftp匿名访问：用户名：anonymous密码：为空或者任意邮箱。<br>（3）vsftp后门：vsftp 2到2.3.4版本存在后门漏洞，通过该漏洞获取root权限。<br>（4）嗅探：ftp使用明文传输，使用Cain进行渗透。（但是嗅探需要在局域网并需要欺骗或监听网关）<br>（5）ftp远程代码溢出。<br>（6）ftp跳转攻击。</li>
+<li>SSH-22<br>SSH：（secure shell）是目前较可靠，专为远程登陆会话和其他网络服务提供安全性的协议。<br>（1）弱口令，可使用工具hydra，msf中的ssh爆破模块。<br>（2）SSH后门<br>（3）openssh用户枚举CVE-2018-15473.</li>
+<li>Telnet-23<br>Telnet协议是TCP&#x2F;IP协议族中的一员，是lnternet远程登陆服务的标准协议和主要方式。<br>（1）暴力破解，使用hydra，或者msf中telnet模块对其进行破解。<br>（2）在Linux系统中一般采用SSH进行远程访问，传输的敏感数据都是经过加密的。而对于Windows下的telnet来说是脆弱的，因为默认没有经过任何加密就在网络中进行传输。使用cain等嗅探工具轻松截获远程登陆密码。</li>
+<li>SMTP-25&#x2F;465<br>smtp：邮件协议，在Linux中默认开启这个服务，可发送钓鱼邮件默认端口：25（smtp）、465（smtps）<br>（1）爆破：弱口令，使用hydra<br>（2）SMTP无认证伪造发件人</li>
+<li>WWW-80<br>为超文本传输协议（HTTP）开放的端口，主要用于万维网传输信息的协议<br>（1）中间件漏洞，如IIS、apache、nginx等<br>（2）80端口一般通过web应用程序的常见漏洞进行攻击</li>
+<li>MySQL-3306<br>3306是MYSQL数据库默认的监听端口<br>（1）mysql弱口令破解<br>（2）弱口令登陆mysql，上传构造的恶意UDP自定义函数代码，通过调用注册的恶意函数执行系统命令<br>（3）SQL注入获取数据库敏感信息，load_file()函数读取系统文件，导出恶意代码到指定路径</li>
+<li>Nmap介绍<br>Network Mapper，是一款开放源代码的网络探测和安全审核的工具<br><em><a target="_blank" rel="noopener" href="https://nmap.org/man/zh/">https://nmap.org/man/zh/</a></em></li>
+<li>功能介绍<br>（1）检测网络存活主机（主机发现）<br>（2）检测主机开放端口（端口发现或枚举）<br>（3）检测相应端口软件（服务发现）版本<br>（4）检测操作系统，硬件地址，以及软件版本<br>（5）检测脆弱性的漏洞（nmap的脚本）</li>
+<li>端口状态<br>（1）open      端口开启，有程序在监控上监控<br>（2）closed    端口关闭，数据有到达主机，没有程序在端口上监控<br>（3）filtered  数据没有到达主机，返回的结果为空，数据被防火墙或IDS过滤</li>
+<li>探测存活主机<br>namap -sn -v -T4 -oG Discovere.gnmap 172.26.1.0&#x2F;24<br>grep “Status:Up” Discovery.gnmap | cut -f 2 -d ‘’&gt;liveHosts.txt</li>
+<li>扫描全部端口<br>nmap -sS -v -T4 -Pn -p 0-65535 -oN FullTCP -iL liveHosts.txt</li>
+</ol>
+<ul>
+<li>-sS：SYN扫描，又称为半开放扫描，它不打开一个完全的TCP连接，执行的快，效率高（一个完整的tcp连接需要3次握手，而-sS选项不需要3次握手）<br>优点：他需要root&#x2F;administrator权限执行</li>
+<li>-Pn：扫描之前不需要ping命令，有些防火墙禁止ping命令。可以进行此选项进行扫描</li>
+<li>-iL：导入需要扫描的列表</li>
+<li>nmap -O 系统扫描</li>
+<li>nmap -sV 版本检测</li>
+</ul>
+<ol start="16">
+<li>nmap漏洞扫描</li>
+</ol>
+<h3 id="其他信息收集"><a href="#其他信息收集" class="headerlink" title="其他信息收集"></a>其他信息收集</h3><ol>
+<li>历史漏洞信息</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://wy.zone.ci/">http://wy.zone.ci/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wooyun.kieran.top/#!/">https://wooyun.kieran.top/#!/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.exploit-db.com/">https://www.exploit-db.com/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.0-sec.org/#/md">https://wiki.0-sec.org/#/md</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.seebug.org/">https://www.seebug.org/</a></li>
+</ul>
+<ol start="2">
+<li>社会工程学</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/21/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-IP%E7%AB%AF%E5%8F%A3%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkfo000qq4e766godgz5" data-title="渗透测试-IP端口信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/23/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          渗透测试-网站信息收集
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">信息收集</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/16/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/">测试博客1</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95/">博客测试</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/11/%E6%B5%8B%E8%AF%95/">测试</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/05/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81-1/">利用kali破解wifi密码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

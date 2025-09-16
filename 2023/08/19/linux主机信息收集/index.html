@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>linux主机信息收集 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="系统架构 uname -a 打印系统信息 cat &#x2F;etc&#x2F;issue文件&#x2F;etc&#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。 cat &#x2F;etc&#x2F;-release cat &#x2F;etc&#x2F;-release，&#x2F;etc&#x2F;redhat-release 文件包含一个被破解析以获取信息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux主机信息收集">
+<meta property="og:url" content="http://example.com/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="系统架构 uname -a 打印系统信息 cat &#x2F;etc&#x2F;issue文件&#x2F;etc&#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。 cat &#x2F;etc&#x2F;-release cat &#x2F;etc&#x2F;-release，&#x2F;etc&#x2F;redhat-release 文件包含一个被破解析以获取信息">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-19T06:54:33.000Z">
+<meta property="article:modified_time" content="2023-08-19T17:06:34.323Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-linux主机信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-08-19T06:54:33.000Z" itemprop="datePublished">2023-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      linux主机信息收集
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h1><ol>
+<li>uname -a<br> 打印系统信息</li>
+<li>cat &#x2F;etc&#x2F;issue<br>文件&#x2F;etc&#x2F;issue是一个文本文件，其中包含要在登陆提示之前打印的消息或系统标识。</li>
+<li>cat &#x2F;etc&#x2F;<em>-release<br> cat &#x2F;etc&#x2F;</em>-release，&#x2F;etc&#x2F;redhat-release 文件包含一个被破解析以获取信息的描述行。</li>
+<li>cat &#x2F;proc&#x2F;version<br> &#x2F;proc&#x2F;version指定了Linux内核的版本，用于编译内核的gcc的版本壹基金内核编译的时间。他还包含器的用户名。</li>
+<li>cat &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;version<br> &#x2F;proc&#x2F;sys&#x2F;kerne&#x2F;中的文件可以用来调整和监视Linux内核操作中的各种活动。</li>
+</ol>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>ps -ef<br>ps aux<br>例出当前进程快照<br>ls -al &#x2F;proc&#x2F;<br> &#x2F;proc是非常特殊的，他也是一个虚拟文件系统。它有时被称为过程信息伪文件系统。 它不包含“真是”文件，而是包含运行时系统信息（例如系统内存，安装的设备，硬件配置）。<br>ls -al &#x2F;proc&#x2F;99<br> 查看关于PID 99的信息。<br>top<br> top命令显示您的Linux机器的处理器活动，并显示实时管理的任务。 它会显示正在使用的处理器和内存以及运行进程等其他信息。<br>id<br> 找到用户的UID或GID等信息<br>w<br> 显示登录到Linux服务器的人员<br>whoami<br> 显示当前用户名<br>last<br> 显示最后一次登录的用户名<br> cat &#x2F;etc&#x2F;master.passwd<br> &#x2F;etc &#x2F;eertcmaster.passwd on BSD ststems<br>cat &#x2F;etc&#x2F;suders<br> cat &#x2F;etc&#x2F;suders 文件内容是使用sudo命令必须遵守的原则<br>sudo -V<br> 打印sudo版本字符串</p>
+<h3 id="SSH服务信息"><a href="#SSH服务信息" class="headerlink" title="SSH服务信息"></a>SSH服务信息</h3><p>cat <del>&#x2F;.ssh&#x2F;authorized_keys<br> 使用公钥认证，认证实体具有公钥和私钥。<br>私钥保存在你登陆的计算机上，而公钥存储在要登陆的所有计算机上的 .ssh&#x2F;authorized_keys文件中。<br>cat ~&#x2F;.ssh&#x2F;id_rsa.pub<br> RSA 私钥会保存在你的home目录中：ssh&#x2F;id_rsa。<br>cat</del>&#x2F;.ssh&#x2F;known_hosts<br> ssh会把每个你访问过计算机的公钥(public key)都记录在这个文件中<br>cat<del>&#x2F;.ssh&#x2F;identity.pub<br> 文件identity.pub包含你的公钥，可以将其添加到其他系统的authorized_keys文件中。<br>cat</del>&#x2F;.ssh&#x2F;identity<br> ssh客户端允许您选择读取RSA或DSA身份验证标识（私钥）的文件。<br>cat&#x2F;etc&#x2F;ssh&#x2F;ssh_config<br> OpenSSH SSH服务端配置文件<br>service –status-all<br> 检查所有服务状态<br>systemctl -a<br> 列出安装在文件系统中的所有单元<br>service servicemname start<br>systemctl start servicename<br> 启动某个服务</p>
+<ol>
+<li>安全<br>iptables -L<br> 列出所有规则链。<br>iptables -F<br> 删除选定规则链中得所有规则<br>iptables -A INPUT -p icmp -m icmp -icmp-type 0 -j ACCEPT<br> 请执行iptables -p icmp-help 获得跟多信息。<br>iptables -A INPUT -p tcp -m tcp -sport 80 -m state -state RELATED,ESTABLISHED -j ACCEPT<br> 允许从&#x2F;到 dst 端口80得tcp连接<br>iptables -A OUTPUT -p tcp -m tcp -dport 80 -m state -state NEW,RELATED,ESTABLISHED,ESTABLISHED -j ACCEPT<br> 允许从&#x2F;到 dst 端口80得TCP连接<br>iptables -A INPUT -p udp -m udp -sport 53 -m state -state RELATED,ESTABLISHED -j ACCEPT<br> 允许来自src端口80得udp连接</li>
+<li>网络<br>ipconfig -a<br> 显示当前可用得所有接口<br>hostname<br> 显示或设置系统得主机名称<br>dnsdomainname<br> 显示系统得DNS域名<br>netstat -antp<br> 显示网络状态<br>cat&#x2F;etc&#x2F;network&#x2F;interfaces<br> &#x2F;etc&#x2F;network&#x2F;interfaces 文件包含网络接口配置信息<br>cat&#x2F;etc&#x2F;sysconfig&#x2F;network<br> &#x2F;etc&#x2F;sysconfig&#x2F;network 文件用于指定有关服务器上所需网络配置得信息<br>cat&#x2F;etc&#x2F;networks<br> &#x2F;etc&#x2F;networks 是一个简单得ASVII文件，描述这些网络得已知DARPA网络和符号名称<br>find &#x2F; -writable -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -222 -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -o w -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; -perm -o x -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写出得文件夹<br>find &#x2F; (-perm -o w -perm -o x) -type d 2&gt;&#x2F;dev&#x2F;null<br> 找出可写可执行的文件夹<br>find &#x2F; -xdev -type d (-perm -0002 -a ! -perm -1000) -print<br> 找出可写得文件<br>find &#x2F;der -xdev (-nouser -o -hogroup)-print<br> 找出不是所有者得文件</li>
+<li>程序</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkff0008q4e73xfxdz5n" data-title="linux主机信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          内网文件传输
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/05/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mysql数据库密码破解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/16/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/">测试博客1</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95/">博客测试</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/11/%E6%B5%8B%E8%AF%95/">测试</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/05/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81-1/">利用kali破解wifi密码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

