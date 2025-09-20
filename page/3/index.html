@@ -71,6 +71,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-信息收集" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
+  <time class="dt-published" datetime="2023-07-21T01:59:32.000Z" itemprop="datePublished">2023-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="什么是信息收集"><a href="#什么是信息收集" class="headerlink" title="什么是信息收集"></a>什么是信息收集</h1><p>信息收集是指通过各种方式获取所需要的信息，以便我们在后续的渗透过程更好的进行。比如目标站点ip、中间件、脚本语言、端口、邮箱等等。信息收集包含资产收集但不限于资产收集。</p>
+<ul>
+<li>信息收集的意义</li>
+</ul>
+<ol>
+<li>信息收集是渗透测试成功的保障</li>
+<li>更多的暴露面</li>
+<li>更大的可能性</li>
+</ol>
+<ul>
+<li>信息收集的分类<br><em>通过直接访问网站在网站上进行操作、对网站进行扫描等、这种是有网络流量经过目标服务器的新信息收集方式。</em></li>
+<li>被动信息收集<br><em>基于公开的渠道，比如搜索引擎等，再不与目标系统直接交互的情况下获取信息，并且尽量避免留下痕迹。</em></li>
+<li>收集那些信息</li>
+</ul>
+<ol>
+<li>服务器信息（端口、服务、真实IP）</li>
+<li>网站信息（网站架构（操作系统、中间件、数据库、编程语言）、指纹信息、WAF、敏感目录、敏感文件、源码泄露、旁站查询、C段查询）</li>
+<li>域名信息（whois、备案信息、子域名）</li>
+<li>人员信息（姓名、职务、生日、联系电话、邮件地址）</li>
+</ol>
+<h2 id="域名信息收集"><a href="#域名信息收集" class="headerlink" title="域名信息收集"></a>域名信息收集</h2><ul>
+<li>域名介绍<br><em>域名（Domain Name），简称域名、网域，是由一串用点分隔的名字组成的lnternet上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位（有时也指地理位置）。</em><br><em>DNS（域名系统，Domain Name System）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。</em></li>
+<li>域名分类<br><strong>顶级域名 .com  二级域名 baidu.com  三级域名 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a><br>政府域名 .gov  商业域名 .com  教育域名 .edu</strong></li>
+<li>Whois<br><em>whois是用来查询域名的IP以及所有者等信息的传输协议。就是一个用来查询域名是否被注册，以及注册域名的详细信息的数据库(如域名所有人，域名注册商)</em></li>
+<li>Whois查询<br><em>whois查询的重要性：通过whois查询可以获得域名注册者邮箱地址等信息。一般情况下对于中小型网站域名注册者就是网站管理员。利用搜索引擎对whois查询到信息进行搜索，获取更多域名注册者的个人信息。</em></li>
+<li>查询方法<br><strong>Web接口查询 <a target="_blank" rel="noopener" href="https://whois.aliyun.com/">https://whois.aliyun.com/</a><br>whois命令行查询 Whois baidu.com</strong></li>
+</ul>
+<h3 id="子域名收集"><a href="#子域名收集" class="headerlink" title="子域名收集"></a>子域名收集</h3><ul>
+<li>子域名介绍<br>*子域名指二级域名，二级域名是顶级域名(一级域名)的下一级。<br>比如mail.heetian.com和bbs.heetian.com是heetian.com的子域，而heetian.com则是顶级域名 .com的子域。</li>
+<li>网络空间安全搜索引擎<br><em><a target="_blank" rel="noopener" href="https://fofa.so/">https://fofa.so/</a></em></li>
+<li>ssl证书查询<br><em><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh/</a></em><br>-Js文件发现子域名<br><em><a target="_blank" rel="noopener" href="https://github.com/Threezh1/JSFinder">https://github.com/Threezh1/JSFinder</a></em><br>子域名爆破</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/07/21/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" data-id="cmfjsmkfg000aq4e7adkkhlmv" data-title="信息收集" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-体验kali渗透" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/07/20/%E4%BD%93%E9%AA%8Ckali%E6%B8%97%E9%80%8F/" class="article-date">
@@ -550,6 +621,10 @@
       <ul>
         
           <li>
+            <a href="/2025/09/20/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/">linux操作系统教程</a>
+          </li>
+        
+          <li>
             <a href="/2025/09/18/linux%E5%AD%A6%E4%B9%A0-0/">linux学习</a>
           </li>
         
@@ -563,10 +638,6 @@
         
           <li>
             <a href="/2025/09/14/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2025/09/11/%E6%B5%8B%E8%AF%95/">测试</a>
           </li>
         
       </ul>
